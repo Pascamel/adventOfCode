@@ -5,7 +5,7 @@ export class Day1 implements IDay {
   solve(fileName: string) {
     const nums = readFileSync(fileName, 'utf-8')
       .split('\n')
-      .map((numsdfsdfsfdsdfsdfsdf) => parseInt(numsdfsdfsfdsdfsdfsdf));
+      .map((num) => parseInt(num));
 
     let last: Number | null = null;
     let lasts: Number[] = [];
