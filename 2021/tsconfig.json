@@ -6,11 +6,12 @@
     "outDir": "dist",
     "rootDir": "src",
     "strict": true,
+    "jsx": "react",
     "noImplicitAny": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["node"]
+    "types": ["node", "@types/jest"]
   },
   "include": ["src"]
 }

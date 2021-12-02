@@ -15,3 +15,9 @@ yarn build
 ```
 yarn start
 ```
+
+# tests
+
+```
+yarn test
+```
