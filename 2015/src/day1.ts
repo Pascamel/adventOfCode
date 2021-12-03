@@ -3,17 +3,18 @@ import { IDay } from './helpers';
 
 export class Day1 implements IDay {
   solve(fileName: string) {
-    const input = readFileSync(fileName, 'utf-8');
+    const input = readFileSync(fileName, 'utf-8').split('');
 
-    const result1 = input
-      .split('')
-      .reduce((acc, char) => (acc + char === '(' ? 1 : -1), 0);
+    const result1 = input.reduce(
+      (acc, char) => acc + (char === '(' ? 1 : -1),
+      0
+    );
 
     let result2 = 0;
     let position = 1;
     let floor = 0;
 
-    for (const char of input.split('')) {
+    for (const char of input) {
       floor += char === '(' ? 1 : -1;
       if (floor === -1) {
         result2 = position;
