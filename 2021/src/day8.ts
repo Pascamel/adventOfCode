@@ -22,10 +22,10 @@ export class Day8 implements IDay {
     const lines = input.map((line) => {
       const parts = line.split(' | ');
 
-      var array = parts[0].split(' ').map((s) => s.split('').sort().join(''));
-      var decoded = new Array(10).fill(0);
-      var length5 = new Array();
-      var length6 = new Array();
+      const array = parts[0].split(' ').map((s) => s.split('').sort().join(''));
+      const decoded = new Array(10).fill(0);
+      const length5 = new Array();
+      const length6 = new Array();
 
       for (let i of array) {
         if (i.length === 2) {
