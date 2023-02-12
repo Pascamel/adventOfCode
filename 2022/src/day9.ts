@@ -1,7 +1,7 @@
 import { IDay } from './helpers';
 import { readFileSync } from 'fs';
 
-export class Day9 implements IDay {
+export class Day9 implements IDay<number[]> {
   directions(direction: string) {
     if (direction === 'R') return [1, 0];
     if (direction === 'L') return [-1, 0];

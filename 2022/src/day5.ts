@@ -1,7 +1,7 @@
 import { IDay } from './helpers';
 import { readFileSync } from 'fs';
 
-export class Day5 implements IDay {
+export class Day5 implements IDay<string[]> {
   getStacksAndMoves(fileName: string) {
     const file = readFileSync(fileName, 'utf-8').split('\n');
 
