@@ -17,4 +17,9 @@ test('Day 1 sample input', () => {
   expect(step2_4).toBe(29);
   expect(step1_5).toBe(11);
   expect(step2_5).toBe(26);
+
+  const [finale1, finale2] = new Day6().solve('data/day6.input');
+
+  expect(finale1).toBe(1655);
+  expect(finale2).toBe(2665);
 });
