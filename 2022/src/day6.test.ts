@@ -1,6 +1,6 @@
 import { Day6 } from './day6';
 
-test('Day 1 sample input', () => {
+test('Day 6 sample input', () => {
   const [step1_1, step2_1] = new Day6().solve('data/day6.sample1');
   const [step1_2, step2_2] = new Day6().solve('data/day6.sample2');
   const [step1_3, step2_3] = new Day6().solve('data/day6.sample3');
