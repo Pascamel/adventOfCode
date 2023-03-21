@@ -67,8 +67,7 @@ export class Day13 implements IDay<number[]> {
   run() {
     const [step1, step2] = this.solve('data/day13.input');
 
-    // 5180 your answer is too low
-    console.log('day 13 step 1: ' + step1.toString());
-    console.log('day 13 step 2: ' + step2.toString());
+    console.log(`day 13 step 1: ${step1}`);
+    console.log(`day 13 step 2: ${step2}`);
   }
 }

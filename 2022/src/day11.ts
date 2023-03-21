@@ -70,7 +70,7 @@ export class Day11 implements IDay<number[]> {
   run() {
     const [step1, step2] = this.solve('data/day11.input');
 
-    console.log('day 11 step 1: ' + step1.toString());
-    console.log('day 11 step 2: ' + step2.toString());
+    console.log(`day 11 step 1: ${step1}`);
+    console.log(`day 11 step 2: ${step2}`);
   }
 }
