@@ -1,4 +1,4 @@
-import { IDay } from './helpers';
+import { IDay, Sum } from './helpers';
 import { readFileSync } from 'fs';
 
 const DIGITS = 'zero,one,two,three,four,five,six,seven,eight,nine'.split(',');
@@ -10,7 +10,7 @@ export class Day1 implements IDay<number[]> {
     const step1 = nums
       .map((l) => l.split('').filter((c) => !isNaN(parseInt(c))))
       .map((l) => parseInt(`${l[0]}${l.pop()?.[0]}`, 10))
-      .reduce((acc, n) => acc + n);
+      .reduce(Sum);
 
     const pattern = (s: string, i: number) => `${s[0]}${i}${s.substring(1)}`;
 
@@ -18,7 +18,7 @@ export class Day1 implements IDay<number[]> {
       .map((l) => DIGITS.reduce((s, d, i) => s.replaceAll(d, pattern(d, i)), l))
       .map((l) => l.split('').filter((c) => !isNaN(parseInt(c))))
       .map((l) => parseInt(`${l[0]}${l.pop()?.[0]}`))
-      .reduce((acc, n) => acc + n);
+      .reduce(Sum);
 
     return [step1, step2];
   }
