@@ -47,17 +47,65 @@ export class Day5 implements IDay<number[]> {
 
     const step1 = Math.min(...seeds.map(locationStep1));
 
-    const step2 = 456;
+    const lines = readFileSync(fileName).toString();
+    const [_seedsStr, ...convertersSrt]: Array<string> =
+      lines.match(/[^:]+(\d)/g) || [];
+
+    // seeds maps
+    const seedsMap = seeds
+      .map((v, i) => (i % 2 === 0 ? [v, v + seeds[i + 1] - 1, -1] : null))
+      .filter((val) => val);
+
+    // using new format for maps
+    const maps2 = maps.map((map) =>
+      map.map((line) => [
+        line.source,
+        line.source + line.length - 1,
+        line.destination - line.source,
+      ])
+    );
+
+    // black magic
+    let candidateSeeds: number[] = [];
+    seedLoop: while (seedsMap.length > 0) {
+      let [seedMin, seedMax, depth] = seedsMap.pop()!;
+
+      if (depth === maps2.length - 1) {
+        candidateSeeds.push(seedMin);
+        continue seedLoop;
+      }
+
+      for (const [sourceMin, sourceMax, diff] of maps2[depth + 1]) {
+        if (seedMin <= sourceMax && sourceMin <= seedMax) {
+          const intersect: number[] = [
+            Math.max(seedMin, sourceMin),
+            Math.min(seedMax, sourceMax),
+          ];
+          seedsMap.push([intersect[0] + diff, intersect[1] + diff, depth + 1]);
+
+          if (seedMin < intersect[0]) {
+            seedsMap.push([seedMin, intersect[0] - 1, depth]);
+          }
+
+          if (seedMax > intersect[1]) {
+            seedsMap.push([intersect[1] + 1, seedMax, depth]);
+          }
+
+          continue seedLoop;
+        }
+      }
+
+      if (!candidateSeeds.includes(seedMin)) {
+        seedsMap.push([seedMin, seedMax, depth + 1]);
+      }
+    }
+
+    const step2 = Math.min(...candidateSeeds);
 
     return [step1, step2];
   }
 
   run() {
-    const [step12, step21] = this.solve('data/day5.sample');
-
-    console.log(`day 5 step 1: ${step12}`);
-    console.log(`day 5 step 2: ${step21}`);
-
     const [step1, step2] = this.solve('data/day5.input');
 
     console.log(`day 5 step 1: ${step1}`);
