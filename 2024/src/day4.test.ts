@@ -9,5 +9,5 @@ test('Day 4 sample input', () => {
   const [finale1, finale2] = new Day4().solve('data/day4.input');
 
   expect(finale1).toBe(2390);
-  expect(finale2).toBe(456);
+  expect(finale2).toBe(1809);
 });
