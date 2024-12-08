@@ -36,45 +36,41 @@ export class Day4 implements IDay<number[]> {
   }
 
   solve(fileName: string) {
-    const file = readFileSync(fileName, 'utf-8').split('\n') as string[];
+    const file = readFileSync(fileName, 'utf-8')
+      .split('\n')
+      .map((line) => line.split(''));
 
-    this.file = file.map((line) => line.split(''));
-
-    const step1 = file.reduce(
+    const step1 = this.file.reduce(
       (accRow, v, row) =>
         accRow +
-        v
-          .split('')
-          .reduce(
-            (acc, _v, col) =>
-              acc +
-              (this.getWord(row, col, 0, 1, 4) === 'XMAS' ? 1 : 0) +
-              (this.getWord(row, col, 0, -1, 4) === 'XMAS' ? 1 : 0) +
-              (this.getWord(row, col, 1, 0, 4) === 'XMAS' ? 1 : 0) +
-              (this.getWord(row, col, -1, 0, 4) === 'XMAS' ? 1 : 0) +
-              (this.getWord(row, col, 1, 1, 4) === 'XMAS' ? 1 : 0) +
-              (this.getWord(row, col, 1, -1, 4) === 'XMAS' ? 1 : 0) +
-              (this.getWord(row, col, -1, 1, 4) === 'XMAS' ? 1 : 0) +
-              (this.getWord(row, col, -1, -1, 4) === 'XMAS' ? 1 : 0),
-            0
-          ),
+        v.reduce(
+          (acc, _v, col) =>
+            acc +
+            (this.getWord(row, col, 0, 1, 4) === 'XMAS' ? 1 : 0) +
+            (this.getWord(row, col, 0, -1, 4) === 'XMAS' ? 1 : 0) +
+            (this.getWord(row, col, 1, 0, 4) === 'XMAS' ? 1 : 0) +
+            (this.getWord(row, col, -1, 0, 4) === 'XMAS' ? 1 : 0) +
+            (this.getWord(row, col, 1, 1, 4) === 'XMAS' ? 1 : 0) +
+            (this.getWord(row, col, 1, -1, 4) === 'XMAS' ? 1 : 0) +
+            (this.getWord(row, col, -1, 1, 4) === 'XMAS' ? 1 : 0) +
+            (this.getWord(row, col, -1, -1, 4) === 'XMAS' ? 1 : 0),
+          0
+        ),
       0
     );
 
-    const step2 = file.reduce(
+    const step2 = this.file.reduce(
       (accRow, v, row) =>
         accRow +
-        v
-          .split('')
-          .reduce(
-            (acc, _v, col) =>
-              acc +
-              (this.getCross(row, col) === 'MASMAS' ? 1 : 0) +
-              (this.getCross(row, col) === 'SAMSAM' ? 1 : 0) +
-              (this.getCross(row, col) === 'MASSAM' ? 1 : 0) +
-              (this.getCross(row, col) === 'SAMMAS' ? 1 : 0),
-            0
-          ),
+        v.reduce(
+          (acc, _v, col) =>
+            acc +
+            (this.getCross(row, col) === 'MASMAS' ? 1 : 0) +
+            (this.getCross(row, col) === 'SAMSAM' ? 1 : 0) +
+            (this.getCross(row, col) === 'MASSAM' ? 1 : 0) +
+            (this.getCross(row, col) === 'SAMMAS' ? 1 : 0),
+          0
+        ),
       0
     );
 
