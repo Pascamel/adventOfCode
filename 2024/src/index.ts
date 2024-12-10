@@ -1,4 +1,5 @@
 import { Day1 } from './day1';
+import { Day10 } from './day10';
 import { Day2 } from './day2';
 import { Day3 } from './day3';
 import { Day4 } from './day4';
@@ -17,3 +18,4 @@ new Day6().run();
 new Day7().run();
 new Day8().run();
 new Day9().run();
+new Day10().run();
