@@ -9,7 +9,7 @@ type Line = {
 
 const SIZE = 1000;
 
-export class Day6 implements IDay {
+export class Day06 implements IDay {
   cleanLine = (s: string): Line => {
     const numbers = s
       .split(' ')
@@ -69,9 +69,9 @@ export class Day6 implements IDay {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day6.input');
+    const [step1, step2] = this.solve('data/day06.input');
 
-    console.log('day 6 step 1: ' + step1.toString());
-    console.log('day 6 step 2: ' + step2.toString());
+    console.log('day 06 step 1: ' + step1.toString());
+    console.log('day 06 step 2: ' + step2.toString());
   }
 }

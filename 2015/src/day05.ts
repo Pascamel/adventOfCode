@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import { IDay } from './helpers';
 
-export class Day5 implements IDay {
+export class Day05 implements IDay {
   isNice1Condition1 = (s: string) =>
     s.split('').filter((c) => 'aeiou'.indexOf(c) > -1).length >= 3;
 
@@ -43,9 +43,9 @@ export class Day5 implements IDay {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day5.input');
+    const [step1, step2] = this.solve('data/day05.input');
 
-    console.log('day 5 step 1: ' + step1.toString());
-    console.log('day 5 step 2: ' + step2.toString());
+    console.log('day 05 step 1: ' + step1.toString());
+    console.log('day 05 step 2: ' + step2.toString());
   }
 }
