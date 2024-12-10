@@ -17,7 +17,7 @@ type Step = Point & {
   direction: Direction;
 };
 
-export class Day6 implements IDay<number[]> {
+export class Day06 implements IDay<number[]> {
   map: string[][] = [];
   rowStart: number = 0;
   colStart: number = 0;
@@ -162,9 +162,9 @@ export class Day6 implements IDay<number[]> {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day6.sample');
+    const [step1, step2] = this.solve('data/day06.sample');
 
-    console.log(`day 6 step 1: ${step1}`);
-    console.log(`day 6 step 2: ${step2}`);
+    console.log(`day 06 step 1: ${step1}`);
+    console.log(`day 06 step 2: ${step2}`);
   }
 }

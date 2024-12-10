@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import { IDay } from './helpers';
 
-export class Day4 implements IDay<number[]> {
+export class Day04 implements IDay<number[]> {
   file: string[][] = [[]];
 
   get(row: number, col: number) {
@@ -78,9 +78,9 @@ export class Day4 implements IDay<number[]> {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day4.input');
+    const [step1, step2] = this.solve('data/day04.input');
 
-    console.log(`day 4 step 1: ${step1}`);
-    console.log(`day 4 step 2: ${step2}`);
+    console.log(`day 04 step 1: ${step1}`);
+    console.log(`day 04 step 2: ${step2}`);
   }
 }

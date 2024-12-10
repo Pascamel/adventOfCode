@@ -82,19 +82,6 @@ export class Day10 implements IDay<number[]> {
   }
 
   run() {
-    const [step1s1, step2s1] = this.solve('data/day10.sample1');
-    console.log(`day 10 step 1: ${step1s1}`);
-    console.log(`day 10 step 2: ${step2s1}`);
-    const [step1s2, step2s2] = this.solve('data/day10.sample2');
-    console.log(`day 10 step 1: ${step1s2}`);
-    console.log(`day 10 step 2: ${step2s2}`);
-    const [step1s3, step2s3] = this.solve('data/day10.sample3');
-    console.log(`day 10 step 1: ${step1s3}`);
-    console.log(`day 10 step 2: ${step2s3}`);
-    const [step1s4, step2s4] = this.solve('data/day10.sample4');
-    console.log(`day 10 step 1: ${step1s4}`);
-    console.log(`day 10 step 2: ${step2s4}`);
-
     const [step1, step2] = this.solve('data/day10.input');
 
     console.log(`day 10 step 1: ${step1}`);

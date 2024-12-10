@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import { IDay } from './helpers';
 
-export class Day2 implements IDay<number[]> {
+export class Day02 implements IDay<number[]> {
   toDiff(values: number[]) {
     return values.reduce(
       (acc, v, i) => (i === 0 ? acc : [...acc, values[i - 1] - v]),
@@ -47,9 +47,9 @@ export class Day2 implements IDay<number[]> {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day2.input');
+    const [step1, step2] = this.solve('data/Day02.input');
 
-    console.log(`day 2 step 1: ${step1}`);
-    console.log(`day 2 step 2: ${step2}`);
+    console.log(`day 02 step 1: ${step1}`);
+    console.log(`day 02 step 2: ${step2}`);
   }
 }

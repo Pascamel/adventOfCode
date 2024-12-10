@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import { IDay } from './helpers';
 
-export class Day9 implements IDay<number[]> {
+export class Day09 implements IDay<number[]> {
   checksum(file: number[]) {
     return file.reduce((acc, v, index) => index * (v < 0 ? 0 : v) + acc, 0);
   }
@@ -93,9 +93,9 @@ export class Day9 implements IDay<number[]> {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day9.sample');
+    const [step1, step2] = this.solve('data/Day09.sample');
 
-    console.log(`day 9 step 1: ${step1}`);
-    console.log(`day 9 step 2: ${step2}`);
+    console.log(`day 09 step 1: ${step1}`);
+    console.log(`day 09 step 2: ${step2}`);
   }
 }

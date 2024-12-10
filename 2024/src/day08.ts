@@ -3,7 +3,7 @@ import { IDay } from './helpers';
 
 type Point = { row: number; col: number };
 
-export class Day8 implements IDay<number[]> {
+export class Day08 implements IDay<number[]> {
   file: string[][] = [];
   antennas: Map<string, Point[]> = new Map();
 
@@ -88,14 +88,9 @@ export class Day8 implements IDay<number[]> {
   }
 
   run() {
-    const [step1s, step2s] = this.solve('data/day8.sample');
+    const [step1, step2] = this.solve('data/day08.input');
 
-    console.log(`day 8 step 1: ${step1s}`);
-    console.log(`day 8 step 2: ${step2s}`);
-
-    const [step1, step2] = this.solve('data/day8.input');
-
-    console.log(`day 8 step 1: ${step1}`);
-    console.log(`day 8 step 2: ${step2}`);
+    console.log(`day 08 step 1: ${step1}`);
+    console.log(`day 08 step 2: ${step2}`);
   }
 }
