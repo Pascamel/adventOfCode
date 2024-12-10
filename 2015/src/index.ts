@@ -7,6 +7,7 @@ import { Day06 } from './day06';
 import { Day07 } from './day07';
 import { Day08 } from './day08';
 import { Day09 } from './day09';
+import { Day10 } from './day10';
 
 new Day01().run();
 new Day02().run();
@@ -17,3 +18,4 @@ new Day06().run();
 new Day07().run();
 new Day08().run();
 new Day09().run();
+new Day10().run();
