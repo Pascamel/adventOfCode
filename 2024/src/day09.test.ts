@@ -1,4 +1,4 @@
-import { Day09 } from './Day09';
+import { Day09 } from './day09';
 
 test('Day 9 sample input', () => {
   const [step1, step2] = new Day09().solve('data/Day09.sample');
