@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs';
+import { day08input } from './data';
 import { IDay } from './helpers';
 
 type Point = { row: number; col: number };
@@ -24,10 +24,8 @@ export class Day08 implements IDay<number[]> {
     );
   }
 
-  loadFileAntennas(fileName: string) {
-    this.file = readFileSync(fileName, 'utf-8')
-      .split('\n')
-      .map((line) => line.split(''));
+  loadFileAntennas(input: string) {
+    this.file = input.split('\n').map((line) => line.split(''));
     this.antennas = new Map();
 
     for (let row in this.file) {
@@ -78,8 +76,8 @@ export class Day08 implements IDay<number[]> {
     }, [] as string[]);
   }
 
-  solve(fileName: string) {
-    this.loadFileAntennas(fileName);
+  solve(input: string) {
+    this.loadFileAntennas(input);
 
     const step1 = this.antinodes(false).length;
     const step2 = this.antinodes(true).length;
@@ -88,7 +86,7 @@ export class Day08 implements IDay<number[]> {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day08.input');
+    const [step1, step2] = this.solve(day08input);
 
     console.log(`day 08 step 1: ${step1}`);
     console.log(`day 08 step 2: ${step2}`);

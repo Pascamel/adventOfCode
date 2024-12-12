@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs';
+import { day05input } from './data';
 import { IDay } from './helpers';
 
 export class Day05 implements IDay {
@@ -27,8 +27,8 @@ export class Day05 implements IDay {
   isNice2Condition2 = (s: string) =>
     s.split('').some((c, index) => index > 1 && s.substr(index - 2, 1) === c);
 
-  solve(fileName: string) {
-    const input = readFileSync(fileName, 'utf-8').split('\n');
+  solve(data: string) {
+    const input = data.split('\n');
 
     const result1 = input
       .filter(this.isNice1Condition1)
@@ -43,7 +43,7 @@ export class Day05 implements IDay {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day05.input');
+    const [step1, step2] = this.solve(day05input);
 
     console.log('day 05 step 1: ' + step1.toString());
     console.log('day 05 step 2: ' + step2.toString());

@@ -1,9 +1,9 @@
-import { readFileSync } from 'fs';
+import { day01input } from './data';
 import { IDay, Sum } from './helpers';
 
 export class Day01 implements IDay<number[]> {
-  solve(fileName: string) {
-    const lines = readFileSync(fileName, 'utf-8').split('\n');
+  solve(input: string) {
+    const lines = input.split('\n');
 
     const [one, two] = lines.reduce(
       (acc, line) => {
@@ -42,7 +42,7 @@ export class Day01 implements IDay<number[]> {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day01.input');
+    const [step1, step2] = this.solve(day01input);
 
     console.log(`day 01 step 1: ${step1}`);
     console.log(`day 01 step 2: ${step2}`);

@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs';
+import { day06input } from './data';
 import { IDay } from './helpers';
 
 type Line = {
@@ -25,8 +25,8 @@ export class Day06 implements IDay {
     };
   };
 
-  solve(fileName: string) {
-    const input = readFileSync(fileName, 'utf-8')
+  solve(data: string) {
+    const input = data
       .split('\n')
       .map((s) => this.cleanLine(s.replace('turn ', '')));
 
@@ -69,7 +69,7 @@ export class Day06 implements IDay {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day06.input');
+    const [step1, step2] = this.solve(day06input);
 
     console.log('day 06 step 1: ' + step1.toString());
     console.log('day 06 step 2: ' + step2.toString());

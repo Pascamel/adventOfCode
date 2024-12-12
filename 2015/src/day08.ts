@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs';
+import { day08input } from './data';
 import { IDay } from './helpers';
 
 export class Day08 implements IDay {
@@ -17,8 +17,8 @@ export class Day08 implements IDay {
     return `"${encoded}"`;
   }
 
-  solve(fileName: string) {
-    const input = readFileSync(fileName, 'utf-8').split('\n');
+  solve(data: string) {
+    const input = data.split('\n');
 
     const result1 = input.reduce(
       (acc, v) => acc + v.length - this.characters(v).length,
@@ -34,7 +34,7 @@ export class Day08 implements IDay {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day08.input');
+    const [step1, step2] = this.solve(day08input);
 
     console.log('day 08 step 1: ' + step1.toString());
     console.log('day 08 step 2: ' + step2.toString());

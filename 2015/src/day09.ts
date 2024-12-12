@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs';
+import { day09input } from './data';
 import { IDay } from './helpers';
 
 type Line = { from: string; to: string; distance: number };
@@ -67,14 +67,12 @@ export class Day09 implements IDay {
       : distances.reduce((a, b) => Math.min(a, b));
   }
 
-  solve(fileName: string) {
-    this.file = readFileSync(fileName, 'utf-8')
-      .split('\n')
-      .map((line) => ({
-        from: line.split(' = ')[0].split(' to ')[0],
-        to: line.split(' = ')[0].split(' to ')[1],
-        distance: parseInt(line.split(' = ')[1]),
-      }));
+  solve(input: string) {
+    this.file = input.split('\n').map((line) => ({
+      from: line.split(' = ')[0].split(' to ')[0],
+      to: line.split(' = ')[0].split(' to ')[1],
+      distance: parseInt(line.split(' = ')[1]),
+    }));
 
     const result1 = this.process();
     const result2 = this.process(true);
@@ -83,7 +81,7 @@ export class Day09 implements IDay {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day09.input');
+    const [step1, step2] = this.solve(day09input);
 
     console.log('day 09 step 1: ' + step1.toString());
     console.log('day 09 step 2: ' + step2.toString());

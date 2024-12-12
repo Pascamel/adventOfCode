@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs';
+import { day10input } from './data';
 import { IDay } from './helpers';
 
 type Point = { row: number; col: number };
@@ -6,8 +6,8 @@ type Point = { row: number; col: number };
 export class Day10 implements IDay<number[]> {
   map: number[][] = [];
 
-  loadMap(fileName: string) {
-    this.map = readFileSync(fileName, 'utf-8')
+  loadMap(input: string) {
+    this.map = input
       .split('\n')
       .map((line) => line.split('').map((n) => parseInt(n)));
   }
@@ -72,8 +72,8 @@ export class Day10 implements IDay<number[]> {
     return summits.reduce((acc, list) => acc + list.length, 0);
   }
 
-  solve(fileName: string) {
-    this.loadMap(fileName);
+  solve(input: string) {
+    this.loadMap(input);
 
     const step1 = this.walk(true);
     const step2 = this.walk(false);
@@ -82,7 +82,7 @@ export class Day10 implements IDay<number[]> {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day10.input');
+    const [step1, step2] = this.solve(day10input);
 
     console.log(`day 10 step 1: ${step1}`);
     console.log(`day 10 step 2: ${step2}`);

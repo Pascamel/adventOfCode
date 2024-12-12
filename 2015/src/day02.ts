@@ -1,16 +1,14 @@
-import { readFileSync } from 'fs';
+import { day02input } from './data';
 import { IDay } from './helpers';
 
 export class Day02 implements IDay {
-  solve(fileName: string) {
-    const input = readFileSync(fileName, 'utf-8')
-      .split('\n')
-      .map((line) =>
-        line
-          .split('x')
-          .map((n) => parseInt(n))
-          .sort((a, b) => a - b)
-      );
+  solve(data: string) {
+    const input = data.split('\n').map((line) =>
+      line
+        .split('x')
+        .map((n) => parseInt(n))
+        .sort((a, b) => a - b)
+    );
 
     const result1 = input.reduce(
       (acc, data) =>
@@ -32,7 +30,7 @@ export class Day02 implements IDay {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day02.input');
+    const [step1, step2] = this.solve(day02input);
 
     console.log('day 02 step 1: ' + step1.toString());
     console.log('day 02 step 2: ' + step2.toString());

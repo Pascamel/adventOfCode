@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs';
+import { day04sample } from './data';
 import { IDay } from './helpers';
 
 export class Day04 implements IDay<number[]> {
@@ -35,10 +35,8 @@ export class Day04 implements IDay<number[]> {
     );
   }
 
-  solve(fileName: string) {
-    const file = readFileSync(fileName, 'utf-8')
-      .split('\n')
-      .map((line) => line.split(''));
+  solve(input: string) {
+    this.file = input.split('\n').map((line) => line.split(''));
 
     const step1 = this.file.reduce(
       (accRow, v, row) =>
@@ -78,7 +76,7 @@ export class Day04 implements IDay<number[]> {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day04.input');
+    const [step1, step2] = this.solve(day04sample);
 
     console.log(`day 04 step 1: ${step1}`);
     console.log(`day 04 step 2: ${step2}`);

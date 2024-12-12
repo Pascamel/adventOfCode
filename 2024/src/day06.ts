@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs';
+import { day06sample } from './data';
 import { IDay } from './helpers';
 
 enum Direction {
@@ -142,11 +142,8 @@ export class Day06 implements IDay<number[]> {
     return { visited, candidates, hasLooped, isOutOfBound };
   }
 
-  solve(fileName: string) {
-    this.map = readFileSync(fileName, 'utf-8')
-      .toString()
-      .split('\n')
-      .map((line) => line.split(''));
+  solve(input: string) {
+    this.map = input.split('\n').map((line) => line.split(''));
     this.rowStart = this.map.findIndex((row) => row.includes('^'));
     this.colStart = this.map[this.rowStart].findIndex((col) => col === '^');
 
@@ -162,7 +159,7 @@ export class Day06 implements IDay<number[]> {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day06.sample');
+    const [step1, step2] = this.solve(day06sample);
 
     console.log(`day 06 step 1: ${step1}`);
     console.log(`day 06 step 2: ${step2}`);

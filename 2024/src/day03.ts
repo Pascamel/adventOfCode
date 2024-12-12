@@ -1,18 +1,16 @@
-import { readFileSync } from 'fs';
+import { day03input } from './data';
 import { IDay, Sum } from './helpers';
 
 export class Day03 implements IDay<number[]> {
-  solve(fileName: string) {
-    const file = readFileSync(fileName, 'utf-8');
-
+  solve(input: string) {
     const step1 = Sum(
-      file
+      input
         .match(/mul\([0-9]+,[0-9]+\)/g)!
         .map((s) => s.match(/[0-9]+/g)!.map((v) => parseInt(v)))
         .map((v) => (v ? v[0] * v[1] : 0))
     );
 
-    const data2 = file
+    const data2 = input
       .match(/(mul\([0-9]+,[0-9]+\)|do\(\)|don't\(\))/g)!
       .reduce(
         (acc, v, i) =>
@@ -36,7 +34,7 @@ export class Day03 implements IDay<number[]> {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day03.input');
+    const [step1, step2] = this.solve(day03input);
 
     console.log(`day 03 step 1: ${step1}`);
     console.log(`day 03 step 2: ${step2}`);

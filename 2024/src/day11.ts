@@ -1,10 +1,10 @@
-import { readFileSync } from 'fs';
+import { day11input } from './data';
 import { IDay } from './helpers';
 
 export class Day11 implements IDay<number[]> {
   map: Map<string, number> = new Map();
 
-  blink (stone:number) {   
+  blink(stone: number) {
     if (stone === 0) {
       return [1];
     }
@@ -15,10 +15,10 @@ export class Day11 implements IDay<number[]> {
       const right = Number(numberStr.slice(half));
       return [left, right];
     }
-    return [stone*2024];
-  } 
+    return [stone * 2024];
+  }
 
-  worker (stones:number[], step:number):number {
+  worker(stones: number[], step: number): number {
     if (step === 0) {
       return stones.length;
     }
@@ -27,17 +27,18 @@ export class Day11 implements IDay<number[]> {
     if (this.map.has(key)) {
       return this.map.get(key)!;
     }
-    
-    const result = stones.map(s => this.blink(s))
+
+    const result = stones
+      .map((s) => this.blink(s))
       .flat()
-      .reduce((acc, s) => acc + this.worker([s], step-1), 0);
+      .reduce((acc, s) => acc + this.worker([s], step - 1), 0);
     this.map.set(key, result);
 
     return result;
   }
 
   solve(input: string) {
-    this.map = new Map();    
+    this.map = new Map();
 
     const step1 = this.worker(input.split(' ').map(Number), 25);
     const step2 = this.worker(input.split(' ').map(Number), 75);
@@ -46,9 +47,9 @@ export class Day11 implements IDay<number[]> {
   }
 
   run() {
-    const [step1, step2] = this.solve('5 62914 65 972 0 805922 6521 1639064');
+    const [step1, step2] = this.solve(day11input);
 
-    console.log(`day 11 step 1: ${step1}`); // 199753
-    console.log(`day 11 step 2: ${step2}`); // 239413123020116
+    console.log(`day 11 step 1: ${step1}`);
+    console.log(`day 11 step 2: ${step2}`);
   }
 }

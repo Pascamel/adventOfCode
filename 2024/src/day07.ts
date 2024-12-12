@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs';
+import { day07sample } from './data';
 import { IDay } from './helpers';
 
 type Line = {
@@ -6,16 +6,14 @@ type Line = {
   numbers: number[];
 };
 export class Day07 implements IDay<number[]> {
-  solve(fileName: string) {
-    const lines = readFileSync(fileName, 'utf-8')
-      .split('\n')
-      .map((line) => {
-        const parts = line.split(': ');
-        return {
-          expected: parseInt(parts[0]),
-          numbers: parts[1].split(' ').map((x) => parseInt(x)),
-        };
-      });
+  solve(input: string) {
+    const lines = input.split('\n').map((line) => {
+      const parts = line.split(': ');
+      return {
+        expected: parseInt(parts[0]),
+        numbers: parts[1].split(' ').map((x) => parseInt(x)),
+      };
+    });
 
     const plus = ([a, b, ...list]: number[]) => [a + b, ...list];
 
@@ -59,7 +57,7 @@ export class Day07 implements IDay<number[]> {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day07.sample');
+    const [step1, step2] = this.solve(day07sample);
 
     console.log(`day 07 step 1: ${step1}`);
     console.log(`day 07 step 2: ${step2}`);

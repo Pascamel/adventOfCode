@@ -1,12 +1,12 @@
-import { readFileSync } from 'fs';
+import { day05input } from './data';
 import { IDay, Middle, Sum } from './helpers';
 
 export class Day05 implements IDay<number[]> {
   rules: [number, number][] = [];
   updates: number[][] = [];
 
-  solve(fileName: string) {
-    const file = readFileSync(fileName, 'utf-8').split('\n') as string[];
+  solve(input: string) {
+    const file = input.split('\n');
 
     this.rules = file
       .slice(0, file.indexOf(''))
@@ -65,7 +65,7 @@ export class Day05 implements IDay<number[]> {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day05.input');
+    const [step1, step2] = this.solve(day05input);
 
     console.log(`day 05 step 1: ${step1}`);
     console.log(`day 05 step 2: ${step2}`);
