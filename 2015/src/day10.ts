@@ -42,7 +42,7 @@ export class Day10 implements IDay {
   run() {
     const [step1, step2] = this.solve(day10input);
 
-    console.log('day 10 step 1: ' + step1.toString());
-    console.log('day 10 step 2: ' + step2.toString());
+    console.log(`day 10 step 1: ${step1}`);
+    console.log(`day 10 step 2: ${step2}`);
   }
 }

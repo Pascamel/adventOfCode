@@ -32,7 +32,7 @@ export class Day02 implements IDay {
   run() {
     const [step1, step2] = this.solve(day02input);
 
-    console.log('day 02 step 1: ' + step1.toString());
-    console.log('day 02 step 2: ' + step2.toString());
+    console.log(`day 02 step 1: ${step1}`);
+    console.log(`day 02 step 2: ${step2}`);
   }
 }
