@@ -3107,6 +3107,14 @@ Blitzen can fly 18 km/s for 3 seconds, but then must rest for 50 seconds.
 Vixen can fly 20 km/s for 4 seconds, but then must rest for 75 seconds.
 Dancer can fly 7 km/s for 20 seconds, but then must rest for 119 seconds.`;
 
+export const day15sample = `Butterscotch: capacity -1, durability -2, flavor 6, texture 3, calories 8
+Cinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3`;
+
+export const day15input = `Sugar: capacity 3, durability 0, flavor 0, texture -3, calories 2
+Sprinkles: capacity -3, durability 3, flavor 0, texture 0, calories 9
+Candy: capacity -1, durability 0, flavor 4, texture 0, calories 1
+Chocolate: capacity 0, durability 0, flavor -2, texture 2, calories 8`;
+
 export const day16input = `Sue 1: cars: 9, akitas: 3, goldfish: 0
 Sue 2: akitas: 9, children: 3, samoyeds: 9
 Sue 3: trees: 6, cars: 6, children: 4
