@@ -1,0 +1,26 @@
+{
+  "name": "advent2025",
+  "version": "1.0.0",
+  "description": "Advent of code 2025",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "NODE_ENV=development nodemon",
+    "build": "rimraf dist && tsc",
+    "start": "NODE_ENV=production node .",
+    "test": "jest --watchAll"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.11.11",
+    "jest": "^27.4.3",
+    "nodemon": "^2.0.15",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^27.0.7",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.2"
+  },
+  "dependencies": {
+    "yarn": "^1.22.22"
+  }
+}
