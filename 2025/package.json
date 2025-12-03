@@ -8,13 +8,16 @@
     "dev": "NODE_ENV=development nodemon",
     "build": "rimraf dist && tsc",
     "start": "NODE_ENV=production node .",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json}\""
   },
   "devDependencies": {
     "@types/jest": "^27.5.2",
     "@types/node": "^16.11.11",
     "jest": "^27.4.3",
     "nodemon": "^2.0.15",
+    "prettier": "^3.7.4",
     "rimraf": "^3.0.2",
     "ts-jest": "^27.0.7",
     "ts-node": "^10.4.0",
