@@ -1,11 +1,13 @@
-import { Day1 } from './day1';
-import { Day2 } from './day2';
-import { Day3 } from './day3';
-import { Day4 } from './day4';
-import { Day5 } from './day5';
+import { Day01 } from "./day01";
+import { Day02 } from "./day02";
+import { Day03 } from "./day03";
+import { Day04 } from "./day04";
+import { Day05 } from "./day05";
+import { Day06 } from "./day06";
 
-new Day1().run();
-new Day2().run();
-new Day3().run();
-new Day4().run();
-new Day5().run();
+new Day01().run();
+new Day02().run();
+new Day03().run();
+new Day04().run();
+new Day05().run();
+new Day06().run();

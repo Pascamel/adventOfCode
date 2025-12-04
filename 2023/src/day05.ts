@@ -1,23 +1,23 @@
-import { readFileSync } from 'fs';
-import { IDay } from './helpers';
+import { day05input } from "./data";
+import { IDay } from "./helpers";
 
 type Line = { destination: number; source: number; length: number };
 
-export class Day5 implements IDay<number[]> {
-  solve(fileName: string) {
-    const file = readFileSync(fileName, 'utf-8').split('\n');
+export class Day05 implements IDay<number[]> {
+  solve(input: string) {
+    const file = input.split("\n");
     const [seed, _empty, ...otherLines] = file;
 
     // create seeds
     const seeds = seed
-      .replace('seeds: ', '')
-      .split(' ')
+      .replace("seeds: ", "")
+      .split(" ")
       .map((n) => parseInt(n));
 
     // list of maps
     const maps: Line[][] = [];
     otherLines.forEach((line) => {
-      if (line.includes('map')) {
+      if (line.includes("map")) {
         maps.push([]);
         return;
       }
@@ -25,7 +25,7 @@ export class Day5 implements IDay<number[]> {
         return;
       }
 
-      const numbers = line.split(' ').map((n) => parseInt(n));
+      const numbers = line.split(" ").map((n) => parseInt(n));
       maps[maps.length - 1].push({
         destination: numbers[0],
         source: numbers[1],
@@ -47,9 +47,8 @@ export class Day5 implements IDay<number[]> {
 
     const step1 = Math.min(...seeds.map(locationStep1));
 
-    const lines = readFileSync(fileName).toString();
-    const [_seedsStr, ...convertersSrt]: Array<string> =
-      lines.match(/[^:]+(\d)/g) || [];
+    const lines = input;
+    const [_seedsStr, ...convertersSrt]: Array<string> = lines.match(/[^:]+(\d)/g) || [];
 
     // seeds maps
     const seedsMap = seeds
@@ -77,10 +76,7 @@ export class Day5 implements IDay<number[]> {
 
       for (const [sourceMin, sourceMax, diff] of maps2[depth + 1]) {
         if (seedMin <= sourceMax && sourceMin <= seedMax) {
-          const intersect: number[] = [
-            Math.max(seedMin, sourceMin),
-            Math.min(seedMax, sourceMax),
-          ];
+          const intersect: number[] = [Math.max(seedMin, sourceMin), Math.min(seedMax, sourceMax)];
           seedsMap.push([intersect[0] + diff, intersect[1] + diff, depth + 1]);
 
           if (seedMin < intersect[0]) {
@@ -106,9 +102,9 @@ export class Day5 implements IDay<number[]> {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day5.input');
+    const [step1, step2] = this.solve(day05input);
 
-    console.log(`day 5 step 1: ${step1}`);
-    console.log(`day 5 step 2: ${step2}`);
+    console.log(`day 05 step 1: ${step1}`);
+    console.log(`day 05 step 2: ${step2}`);
   }
 }

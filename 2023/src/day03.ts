@@ -1,16 +1,16 @@
-import { IDay, Sum } from './helpers';
-import { readFileSync } from 'fs';
+import { day03input } from "./data";
+import { IDay, Sum } from "./helpers";
 
 type Number = { row: number; start: number; end: number };
 type Gear = { row: number; col: number };
 
-export class Day3 implements IDay<number[]> {
+export class Day03 implements IDay<number[]> {
   extractNumbers(lines: string[]): Number[] {
     const numbers: Number[] = [];
     for (const [row, line] of lines.entries()) {
       let start = -2;
 
-      for (const [col, char] of line.split('').entries()) {
+      for (const [col, char] of line.split("").entries()) {
         if (!isNaN(parseInt(char))) {
           if (start == -2) {
             start = col;
@@ -36,8 +36,8 @@ export class Day3 implements IDay<number[]> {
     const gears: Gear[] = [];
 
     for (const [row, line] of lines.entries()) {
-      for (const [col, char] of line.split('').entries()) {
-        if (char === '*') {
+      for (const [col, char] of line.split("").entries()) {
+        if (char === "*") {
           gears.push({ row, col });
         }
       }
@@ -51,11 +51,11 @@ export class Day3 implements IDay<number[]> {
     const s = Math.max(start - 1, 0);
     const e = Math.min(end + 1, file[row].length) + 1;
 
-    const one = row === 0 ? '' : file[row - 1].substring(s, e);
+    const one = row === 0 ? "" : file[row - 1].substring(s, e);
     const two = file[row].substring(s, e);
-    const three = row === file.length - 1 ? '' : file[row + 1].substring(s, e);
+    const three = row === file.length - 1 ? "" : file[row + 1].substring(s, e);
 
-    return `${one}${two}${three}`.replace(/[\.0-9]/gi, '').length > 0;
+    return `${one}${two}${three}`.replace(/[\.0-9]/gi, "").length > 0;
   }
 
   valuePart(number: Number, file: string[]) {
@@ -72,8 +72,8 @@ export class Day3 implements IDay<number[]> {
     );
   }
 
-  solve(fileName: string) {
-    const file = readFileSync(fileName, 'utf-8').split('\n');
+  solve(input: string) {
+    const file = input.split("\n");
     const parts = this.extractNumbers(file).filter((n) => this.isPart(n, file));
     const gears = this.extractGears(file);
 
@@ -93,9 +93,9 @@ export class Day3 implements IDay<number[]> {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day3.input');
+    const [step1, step2] = this.solve(day03input);
 
-    console.log(`day 3 step 1: ${step1}`);
-    console.log(`day 3 step 2: ${step2}`);
+    console.log(`day 03 step 1: ${step1}`);
+    console.log(`day 03 step 2: ${step2}`);
   }
 }

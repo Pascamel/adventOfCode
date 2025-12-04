@@ -1,19 +1,19 @@
-import { IDay, Sum } from './helpers';
-import { readFileSync } from 'fs';
+import { day04input } from "./data";
+import { IDay, Sum } from "./helpers";
 
-export class Day4 implements IDay<number[]> {
-  solve(fileName: string) {
-    const file = readFileSync(fileName, 'utf-8').split('\n');
+export class Day04 implements IDay<number[]> {
+  solve(input: string) {
+    const file = input.split("\n");
 
     const parseString = (s: string) =>
       s
-        .split(' ')
+        .split(" ")
         .filter((v) => v.length)
         .map((v) => parseInt(v));
 
     const cards = file.map((line) => {
-      const [winners1, numbers1] = line.split(' | ');
-      const [_, winners2] = winners1.split(':');
+      const [winners1, numbers1] = line.split(" | ");
+      const [_, winners2] = winners1.split(":");
 
       const winners = parseString(winners2);
       const numbers = parseString(numbers1);
@@ -40,9 +40,9 @@ export class Day4 implements IDay<number[]> {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day4.input');
+    const [step1, step2] = this.solve(day04input);
 
-    console.log(`day 4 step 1: ${step1}`);
-    console.log(`day 4 step 2: ${step2}`);
+    console.log(`day 04 step 1: ${step1}`);
+    console.log(`day 04 step 2: ${step2}`);
   }
 }
