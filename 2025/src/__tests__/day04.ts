@@ -1,7 +1,7 @@
 import { day04input, day04sample } from "../data";
 import { Day04 } from "../day04";
 
-test("Day 4 sample input", () => {
+test("Day 04 sample input", () => {
   const [step1, step2] = new Day04().solve(day04sample);
 
   expect(step1).toBe(13);
