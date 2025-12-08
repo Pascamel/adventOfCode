@@ -1,35 +1,35 @@
-import { IDay } from './helpers';
-import { readFileSync } from 'fs';
+import { day07input } from "./data";
+import { IDay } from "./helpers";
 
 export class Day7 implements IDay<number[]> {
-  solve(fileName: string) {
-    const file = readFileSync(fileName, 'utf-8').split('\n');
+  solve(input: string) {
+    const file = input.split("\n");
     const folders = new Map<string, number[]>();
     let dirs: string[] = [];
 
     // hard drive structure
     while (file.length > 0) {
-      const line = file.shift() ?? '';
+      const line = file.shift() ?? "";
 
-      if (line.startsWith('$ cd ')) {
+      if (line.startsWith("$ cd ")) {
         const dir = line.substring(5);
-        if (dir === '..') {
+        if (dir === "..") {
           dirs.pop();
-        } else if (dir !== '/') {
+        } else if (dir !== "/") {
           dirs.push(dir);
         }
-      } else if (line !== '$ ls') {
-        const [head, tail] = line.split(' ');
+      } else if (line !== "$ ls") {
+        const [head, tail] = line.split(" ");
 
-        if (head === 'dir') {
-          const newKey = [...dirs, tail].join('/');
+        if (head === "dir") {
+          const newKey = [...dirs, tail].join("/");
           if (!folders.has(newKey)) {
             folders.set(newKey, []);
           }
         } else {
           // push the file to current folder and all parents
           for (let i = 1; i <= dirs.length; i++) {
-            const key = dirs.slice(0, i).join('/');
+            const key = dirs.slice(0, i).join("/");
             folders.get(key)?.push(parseInt(head));
           }
         }
@@ -42,7 +42,7 @@ export class Day7 implements IDay<number[]> {
       .reduce((a, b) => a + b, 0);
 
     const totalFiles = [...folders.keys()]
-      .filter((v) => v.indexOf('/') === -1)
+      .filter((v) => v.indexOf("/") === -1)
       .map((v) => folders.get(v)?.reduce((a, b) => a + b, 0) ?? 0)
       .reduce((a, b) => a + b, 0);
     const folderSizes = [...folders.values()]
@@ -54,7 +54,7 @@ export class Day7 implements IDay<number[]> {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day7.input');
+    const [step1, step2] = this.solve(day07input);
 
     console.log(`day 7 step 1: ${step1}`);
     console.log(`day 7 step 2: ${step2}`);

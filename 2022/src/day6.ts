@@ -1,9 +1,9 @@
-import { IDay } from './helpers';
-import { readFileSync } from 'fs';
+import { day06input } from "./data";
+import { IDay } from "./helpers";
 
 export class Day6 implements IDay<number[]> {
-  solve(fileName: string) {
-    const file = readFileSync(fileName, 'utf-8').split('');
+  solve(input: string) {
+    const file = input.split("");
 
     const search = (count: number) => {
       let [result, found] = [-1, false];
@@ -23,7 +23,7 @@ export class Day6 implements IDay<number[]> {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day6.input');
+    const [step1, step2] = this.solve(day06input);
 
     console.log(`day 6 step 1: ${step1}`);
     console.log(`day 6 step 2: ${step2}`);

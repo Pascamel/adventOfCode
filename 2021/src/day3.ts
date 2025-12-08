@@ -1,10 +1,10 @@
-import { readFileSync } from 'fs';
-import { IDay } from './helpers';
+import { IDay } from "./helpers";
+import { day03input } from "./data";
 
 export class Day3 implements IDay {
   binToNumber = (binary: string) => {
     return binary
-      .split('')
+      .split("")
       .map((n) => parseInt(n))
       .reverse()
       .reduce((acc, bit, index) => acc + bit * Math.pow(2, index), 0);
@@ -14,8 +14,8 @@ export class Day3 implements IDay {
     let counters: Array<number> = new Array(lines[0].length).fill(0);
 
     lines.forEach((line) => {
-      line.split('').forEach((bit, index) => {
-        counters[index] = counters[index] + (bit === '1' ? 1 : -1);
+      line.split("").forEach((bit, index) => {
+        counters[index] = counters[index] + (bit === "1" ? 1 : -1);
       });
     });
 
@@ -26,7 +26,7 @@ export class Day3 implements IDay {
     const counters = this.counters(lines);
 
     return lines.filter(
-      (line) => line.substr(index, 1) === (counters[index] >= 0 ? '1' : '0')
+      (line) => line.substr(index, 1) === (counters[index] >= 0 ? "1" : "0")
     );
   };
 
@@ -34,17 +34,17 @@ export class Day3 implements IDay {
     const counters = this.counters(lines);
 
     return lines.filter(
-      (line) => line.substr(index, 1) === (counters[index] < 0 ? '1' : '0')
+      (line) => line.substr(index, 1) === (counters[index] < 0 ? "1" : "0")
     );
   };
 
   step1 = (lines: Array<string>) => {
     const counters = this.counters(lines);
     const gamma = this.binToNumber(
-      counters.map((n) => (n > 0 ? 1 : 0)).join('')
+      counters.map((n) => (n > 0 ? 1 : 0)).join("")
     );
     const epsilon = this.binToNumber(
-      counters.map((n) => (n > 0 ? 0 : 1)).join('')
+      counters.map((n) => (n > 0 ? 0 : 1)).join("")
     );
 
     return gamma * epsilon;
@@ -70,16 +70,16 @@ export class Day3 implements IDay {
     return oxygenGeneratorRating * co2ScrubberRating;
   };
 
-  solve(fileName: string) {
-    const lines = readFileSync(fileName, 'utf-8').split('\n');
+  solve(input: string) {
+    const lines = input.split("\n");
 
     return [this.step1(lines), this.step2(lines)];
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day3.input');
+    const [step1, step2] = this.solve(day03input);
 
-    console.log('day 3 step 1: ' + step1.toString());
-    console.log('day 3 step 2: ' + step2.toString());
+    console.log("day 3 step 1: " + step1.toString());
+    console.log("day 3 step 2: " + step2.toString());
   }
 }

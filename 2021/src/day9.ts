@@ -1,5 +1,5 @@
-import { readFileSync } from 'fs';
-import { IDay } from './helpers';
+import { IDay } from "./helpers";
+import { day09input } from "./data";
 
 export class Day9 implements IDay {
   lowPoints(input: Array<Array<number>>) {
@@ -63,10 +63,10 @@ export class Day9 implements IDay {
       .reduce((acc, v) => acc * v, 1);
   }
 
-  solve(fileName: string) {
-    const input = readFileSync(fileName, 'utf-8')
-      .split('\n')
-      .map((line) => line.split('').map((num) => parseInt(num)));
+  solve(input_: string) {
+    const input = input_
+      .split("\n")
+      .map((line) => line.split("").map((num) => parseInt(num)));
 
     let result1 = this.part1(input);
     let result2 = this.part2(input);
@@ -75,9 +75,9 @@ export class Day9 implements IDay {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day9.input');
+    const [step1, step2] = this.solve(day09input);
 
-    console.log('day 9 step 1: ' + step1.toString());
-    console.log('day 9 step 2: ' + step2.toString());
+    console.log("day 9 step 1: " + step1.toString());
+    console.log("day 9 step 2: " + step2.toString());
   }
 }

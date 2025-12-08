@@ -1,11 +1,12 @@
-import { IDay } from './helpers';
-import { readFileSync } from 'fs';
+import { day08input } from "./data";
+import { IDay } from "./helpers";
+import { readFileSync } from "fs";
 
 export class Day8 implements IDay<number[]> {
-  solve(fileName: string) {
-    const file = readFileSync(fileName, 'utf-8')
-      .split('\n')
-      .map((line) => line.split('').map((v) => parseInt(v, 10)));
+  solve(input: string) {
+    const file = input
+      .split("\n")
+      .map((line) => line.split("").map((v) => parseInt(v, 10)));
     const L = file.length;
     const gridVisible = Array(L)
       .fill(0)
@@ -126,7 +127,7 @@ export class Day8 implements IDay<number[]> {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day8.input');
+    const [step1, step2] = this.solve(day08input);
 
     console.log(`day 8 step 1: ${step1}`);
     console.log(`day 8 step 2: ${step2}`);

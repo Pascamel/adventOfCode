@@ -1,5 +1,6 @@
-import { IDay } from './helpers';
-import { cp, readFileSync } from 'fs';
+import { day14input } from "./data";
+import { IDay } from "./helpers";
+import { cp, readFileSync } from "fs";
 
 enum kind {
   air = 0,
@@ -14,48 +15,46 @@ interface File {
 }
 
 export class Day14 implements IDay<number[]> {
-  loadFile1(fileName: string): File {
+  loadFile1(input: string): File {
     let colMin = 500;
     let colMax = 500;
     let rowMax = 0;
 
-    const file = readFileSync(fileName, 'utf-8')
-      .split('\n')
-      .reduce((acc, line) => {
-        const points = line
-          .split(' -> ')
-          .map((p) => p.split(',').map((v) => parseInt(v)));
+    const file = input.split("\n").reduce((acc, line) => {
+      const points = line
+        .split(" -> ")
+        .map((p) => p.split(",").map((v) => parseInt(v)));
 
-        for (let i = 0; i < points.length - 1; i++) {
-          const [start, end] = points.slice(i, i + 2);
+      for (let i = 0; i < points.length - 1; i++) {
+        const [start, end] = points.slice(i, i + 2);
 
-          if (start[0] === end[0]) {
-            if (!Array.isArray(acc[start[0]])) {
-              acc[start[0]] = [];
+        if (start[0] === end[0]) {
+          if (!Array.isArray(acc[start[0]])) {
+            acc[start[0]] = [];
+          }
+          const s = start[1] < end[1] ? start[1] : end[1];
+          const e = start[1] < end[1] ? end[1] : start[1];
+          for (let j = s; j <= e; j++) {
+            acc[start[0]][j] = 1;
+          }
+        } else if (start[1] === end[1]) {
+          const s = start[0] < end[0] ? start[0] : end[0];
+          const e = start[0] < end[0] ? end[0] : start[0];
+          for (let j = s; j <= e; j++) {
+            if (!Array.isArray(acc[j])) {
+              acc[j] = [];
             }
-            const s = start[1] < end[1] ? start[1] : end[1];
-            const e = start[1] < end[1] ? end[1] : start[1];
-            for (let j = s; j <= e; j++) {
-              acc[start[0]][j] = 1;
-            }
-          } else if (start[1] === end[1]) {
-            const s = start[0] < end[0] ? start[0] : end[0];
-            const e = start[0] < end[0] ? end[0] : start[0];
-            for (let j = s; j <= e; j++) {
-              if (!Array.isArray(acc[j])) {
-                acc[j] = [];
-              }
-              acc[j][start[1]] = kind.rock;
+            acc[j][start[1]] = kind.rock;
 
-              colMin = Math.min(colMin, j);
-              colMax = Math.max(colMax, j);
-              rowMax = Math.max(rowMax, start[1]);
-            }
+            colMin = Math.min(colMin, j);
+            colMax = Math.max(colMax, j);
+            rowMax = Math.max(rowMax, start[1]);
           }
         }
+      }
 
-        return acc;
-      }, [] as number[][]);
+      return acc;
+    }, [] as number[][]);
 
     return {
       colMin,
@@ -73,8 +72,8 @@ export class Day14 implements IDay<number[]> {
     };
   }
 
-  loadFile2(fileName: string): File {
-    let file = this.loadFile1(fileName);
+  loadFile2(input: string): File {
+    let file = this.loadFile1(input);
 
     for (let col = 500 - file.rowMax - 3; col < 500 + file.rowMax + 3; col++) {
       if (!file.file[col]) {
@@ -145,9 +144,9 @@ export class Day14 implements IDay<number[]> {
     return file.rowMax * 2;
   }
 
-  solve(fileName: string) {
-    const file1 = this.loadFile1(fileName);
-    const file2 = this.loadFile2(fileName);
+  solve(input: string) {
+    const file1 = this.loadFile1(input);
+    const file2 = this.loadFile2(input);
 
     const step1 = this.solve1and2(file1);
     const step2 = this.solve1and2(file2);
@@ -156,7 +155,7 @@ export class Day14 implements IDay<number[]> {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day14.input');
+    const [step1, step2] = this.solve(day14input);
 
     console.log(`day 14 step 1: ${step1}`);
     console.log(`day 14 step 2: ${step2}`);

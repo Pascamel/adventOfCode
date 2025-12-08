@@ -1,5 +1,5 @@
-import { IDay } from './helpers';
-import { readFileSync } from 'fs';
+import { day15input } from "./data";
+import { IDay } from "./helpers";
 
 interface Point {
   x: number;
@@ -14,19 +14,17 @@ interface Line {
 type File = Array<Line>;
 
 export class Day15 implements IDay<string[]> {
-  solve(fileName: string) {
-    const file: File = readFileSync(fileName, 'utf-8')
-      .split('\n')
-      .map((l) => ({
-        sensor: {
-          x: parseInt(l.split(',')[0].split('=')[1]),
-          y: parseInt(l.split('y=')[1].split(':')[0]),
-        },
-        beacon: {
-          x: parseInt(l.split('is at x=')[1].split(',')[0]),
-          y: parseInt(l.split(', y=')[2]),
-        },
-      }));
+  solve(input: string) {
+    const file: File = input.split("\n").map((l) => ({
+      sensor: {
+        x: parseInt(l.split(",")[0].split("=")[1]),
+        y: parseInt(l.split("y=")[1].split(":")[0]),
+      },
+      beacon: {
+        x: parseInt(l.split("is at x=")[1].split(",")[0]),
+        y: parseInt(l.split(", y=")[2]),
+      },
+    }));
 
     const step1 = this.step1(file);
     const step2 = this.step2(file);
@@ -44,21 +42,21 @@ export class Day15 implements IDay<string[]> {
         const drow = Math.abs(row - sensor.y);
 
         for (let i = 0; i <= dx + dy - drow; i++) {
-          result.set(sensor.x + i, '#');
-          result.set(sensor.x - i, '#');
+          result.set(sensor.x + i, "#");
+          result.set(sensor.x - i, "#");
         }
       }
 
       for (let { sensor, beacon } of file) {
         if (sensor.y === row) {
-          result.set(sensor.x, 'S');
+          result.set(sensor.x, "S");
         }
         if (beacon.y === row) {
-          result.set(beacon.x, 'B');
+          result.set(beacon.x, "B");
         }
       }
 
-      return Array.from(result.values()).filter((v) => v === '#').length;
+      return Array.from(result.values()).filter((v) => v === "#").length;
     };
 
     return `10=${helper(10, file)}, 2000000=${helper(2000000, file)}`;
@@ -101,7 +99,7 @@ export class Day15 implements IDay<string[]> {
 
       if (!(ranges[0][0] === 0 && ranges[0][1] === y)) {
         if (ranges.length < 2) {
-          return '0';
+          return "0";
         }
 
         let result = (ranges[1][1] + 1) * 4000000 + row;
@@ -109,11 +107,11 @@ export class Day15 implements IDay<string[]> {
       }
     }
 
-    return '0';
+    return "0";
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day15.input');
+    const [step1, step2] = this.solve(day15input);
 
     console.log(`day 15 step 1: ${step1}`);
     console.log(`day 15 step 2: ${step2}`);

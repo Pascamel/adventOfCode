@@ -1,14 +1,13 @@
-import { readFileSync } from 'fs';
-import { ByteLengthQueuingStrategy } from 'stream/web';
-import { IDay } from './helpers';
+import { IDay } from "./helpers";
+import { day08input } from "./data";
 
 export class Day8 implements IDay {
   part1(input: Array<string>) {
     return input.reduce((acc, line) => {
       const result = line
-        .split(' | ')[1]
-        .split(' ')
-        .map((v) => new Set(v.split('')).size)
+        .split(" | ")[1]
+        .split(" ")
+        .map((v) => new Set(v.split("")).size)
         .filter((v) => [2, 3, 4, 7].indexOf(v) > -1);
       return acc + result.length;
     }, 0);
@@ -16,13 +15,13 @@ export class Day8 implements IDay {
 
   part2(input: Array<string>) {
     const count = (s1: string, s2: string) => {
-      return s1.split('').filter((v) => s2.split('').includes(v)).length;
+      return s1.split("").filter((v) => s2.split("").includes(v)).length;
     };
 
     const lines = input.map((line) => {
-      const parts = line.split(' | ');
+      const parts = line.split(" | ");
 
-      const array = parts[0].split(' ').map((s) => s.split('').sort().join(''));
+      const array = parts[0].split(" ").map((s) => s.split("").sort().join(""));
       const decoded = new Array(10).fill(0);
       const length5 = new Array();
       const length6 = new Array();
@@ -67,17 +66,17 @@ export class Day8 implements IDay {
       }
 
       return parts[1]
-        .split(' ')
-        .map((s) => s.split('').sort().join(''))
+        .split(" ")
+        .map((s) => s.split("").sort().join(""))
         .map((s) => decoded.indexOf(s))
-        .join('');
+        .join("");
     });
 
     return lines.map((n) => parseInt(n)).reduce((acc, v) => acc + v, 0);
   }
 
-  solve(fileName: string) {
-    const input = readFileSync(fileName, 'utf-8').split('\n');
+  solve(input_: string) {
+    const input = input_.split("\n");
 
     const result1 = this.part1(input);
     const result2 = this.part2(input);
@@ -86,9 +85,9 @@ export class Day8 implements IDay {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day8.input');
+    const [step1, step2] = this.solve(day08input);
 
-    console.log('day 8 step 1: ' + step1.toString());
-    console.log('day 8 step 2: ' + step2.toString());
+    console.log("day 8 step 1: " + step1.toString());
+    console.log("day 8 step 2: " + step2.toString());
   }
 }

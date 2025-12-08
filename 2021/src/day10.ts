@@ -1,5 +1,5 @@
-import { readFileSync } from 'fs';
-import { IDay } from './helpers';
+import { IDay } from "./helpers";
+import { day10input } from "./data";
 
 export class Day10 implements IDay {
   pairs: Map<string, string>;
@@ -9,23 +9,23 @@ export class Day10 implements IDay {
 
   constructor() {
     this.pairs = new Map([
-      ['[', ']'],
-      ['{', '}'],
-      ['(', ')'],
-      ['<', '>'],
+      ["[", "]"],
+      ["{", "}"],
+      ["(", ")"],
+      ["<", ">"],
     ]);
     this.openers = Array.from(this.pairs.keys());
     this.pointsPart1 = new Map([
-      [')', 3],
-      [']', 57],
-      ['}', 1197],
-      ['>', 25137],
+      [")", 3],
+      ["]", 57],
+      ["}", 1197],
+      [">", 25137],
     ]);
     this.pointsPart2 = new Map([
-      [')', 1],
-      [']', 2],
-      ['}', 3],
-      ['>', 4],
+      [")", 1],
+      ["]", 2],
+      ["}", 3],
+      [">", 4],
     ]);
   }
 
@@ -33,9 +33,9 @@ export class Day10 implements IDay {
     return input
       .map((line) => {
         let expected: Array<string> = [];
-        for (let char of line.split('')) {
+        for (let char of line.split("")) {
           if (this.openers.indexOf(char) > -1) {
-            expected = [this.pairs.get(char) ?? '', ...expected];
+            expected = [this.pairs.get(char) ?? "", ...expected];
           } else {
             const popped = expected.shift();
             if (char !== popped) {
@@ -43,7 +43,7 @@ export class Day10 implements IDay {
             }
           }
         }
-        return '';
+        return "";
       })
       .filter((invalidChar) => invalidChar.length > 0)
       .reduce((acc, v) => acc + (this.pointsPart1.get(v) ?? 0), 0);
@@ -53,9 +53,9 @@ export class Day10 implements IDay {
     const tmp = input
       .map((line) => {
         let expected: Array<string> = [];
-        for (let char of line.split('')) {
+        for (let char of line.split("")) {
           if (this.openers.indexOf(char) > -1) {
-            expected = [this.pairs.get(char) ?? '', ...expected];
+            expected = [this.pairs.get(char) ?? "", ...expected];
           } else {
             const popped = expected.shift();
             if (char !== popped) {
@@ -74,8 +74,8 @@ export class Day10 implements IDay {
     return tmp[(tmp.length - 1) / 2];
   }
 
-  solve(fileName: string) {
-    const input = readFileSync(fileName, 'utf-8').split('\n');
+  solve(input_: string) {
+    const input = input_.split("\n");
 
     let result1 = this.part1(input);
     let result2 = this.part2(input);
@@ -84,9 +84,9 @@ export class Day10 implements IDay {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day10.input');
+    const [step1, step2] = this.solve(day10input);
 
-    console.log('day 10 step 1: ' + step1.toString());
-    console.log('day 10 step 2: ' + step2.toString());
+    console.log("day 10 step 1: " + step1.toString());
+    console.log("day 10 step 2: " + step2.toString());
   }
 }

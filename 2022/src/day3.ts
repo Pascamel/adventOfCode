@@ -1,14 +1,14 @@
-import { IDay } from './helpers';
-import { readFileSync } from 'fs';
+import { day03input } from "./data";
+import { IDay } from "./helpers";
 
 export class Day3 implements IDay<number[]> {
-  solve(fileName: string) {
-    const file = readFileSync(fileName, 'utf-8').split('\n');
+  solve(input: string) {
+    const file = input.split("\n");
     const step1 = file
       .map((s) => {
-        const p1 = s.slice(0, s.length / 2).split('');
-        const p2 = s.slice(s.length / 2, s.length).split('');
-        const wrongItem = p1.filter((v) => p2.includes(v)).pop() ?? '';
+        const p1 = s.slice(0, s.length / 2).split("");
+        const p2 = s.slice(s.length / 2, s.length).split("");
+        const wrongItem = p1.filter((v) => p2.includes(v)).pop() ?? "";
         const asciiCode = wrongItem.charCodeAt(0);
 
         // 'a'.charCodeAt(0) = 97 and 'A'.charCodeAt(0)-38 = 27
@@ -29,9 +29,9 @@ export class Day3 implements IDay<number[]> {
         [[]] as string[][]
       )
       .map((triplet) => {
-        const [b1, b2, b3] = triplet.map((v) => v.split(''));
+        const [b1, b2, b3] = triplet.map((v) => v.split(""));
         const wrongItem =
-          b1.filter((v) => b2.includes(v) && b3.includes(v)).pop() ?? '';
+          b1.filter((v) => b2.includes(v) && b3.includes(v)).pop() ?? "";
         const asciiCode = wrongItem.charCodeAt(0);
 
         return asciiCode - (asciiCode < 91 ? 38 : 96);
@@ -43,7 +43,7 @@ export class Day3 implements IDay<number[]> {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day3.input');
+    const [step1, step2] = this.solve(day03input);
 
     console.log(`day 3 step 1: ${step1}`);
     console.log(`day 3 step 2: ${step2}`);

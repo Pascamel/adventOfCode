@@ -1,5 +1,6 @@
-import { readFileSync } from 'fs';
-import { IDay } from './helpers';
+import { readFileSync } from "fs";
+import { IDay } from "./helpers";
+import { day04input } from "./data";
 
 export class Day4 implements IDay {
   lineWins = (v1: number, v2: number, v3: number, v4: number, v5: number) =>
@@ -65,19 +66,19 @@ export class Day4 implements IDay {
     return -1;
   };
 
-  solve(fileName: string) {
-    const input = readFileSync(fileName, 'utf-8').split('\n');
-    const draw = input[0].split(',').map((n) => parseInt(n));
+  solve(input_: string) {
+    const input = input_.split("\n");
+    const draw = input[0].split(",").map((n) => parseInt(n));
     const grids = input.reduce((acc: Array<Array<number>>, line, index) => {
       if (index === 0) {
         return acc;
       }
-      if (line === '') {
+      if (line === "") {
         return [...acc, []];
       }
       const last: Array<number> = acc.pop() || [];
       const ints = line
-        .split(' ')
+        .split(" ")
         .filter((s) => s.length > 0)
         .map((n) => parseInt(n));
       return [...acc, [...last, ...ints]];
@@ -90,9 +91,9 @@ export class Day4 implements IDay {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day4.input');
+    const [step1, step2] = this.solve(day04input);
 
-    console.log('day 4 step 1: ' + step1.toString());
-    console.log('day 4 step 2: ' + step2.toString());
+    console.log("day 4 step 1: " + step1.toString());
+    console.log("day 4 step 2: " + step2.toString());
   }
 }

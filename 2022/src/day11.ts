@@ -1,5 +1,5 @@
-import { IDay } from './helpers';
-import { readFileSync } from 'fs';
+import { day11input } from "./data";
+import { IDay } from "./helpers";
 
 interface Monkey {
   items: number[];
@@ -11,20 +11,20 @@ interface Monkey {
 }
 
 export class Day11 implements IDay<number[]> {
-  readFile(fileName: string): Monkey[] {
-    return readFileSync(fileName, 'utf-8')
-      .split('Monkey ')
+  readFile(input: string): Monkey[] {
+    return input
+      .split("Monkey ")
       .slice(1)
       .map((monkey) => {
         return {
           items: monkey
-            .split(':')[2]
-            .split(',')
+            .split(":")[2]
+            .split(",")
             .map((v) => parseInt(v)),
-          operation: monkey.split('new = ')[1].split('\n')[0].trim(),
-          test: parseInt(monkey.split(':')[4].split('divisible by ')[1]),
-          true: parseInt(monkey.split(':')[5].split('throw to monkey')[1]),
-          false: parseInt(monkey.split(':')[6].split('throw to monkey')[1]),
+          operation: monkey.split("new = ")[1].split("\n")[0].trim(),
+          test: parseInt(monkey.split(":")[4].split("divisible by ")[1]),
+          true: parseInt(monkey.split(":")[5].split("throw to monkey")[1]),
+          false: parseInt(monkey.split(":")[6].split("throw to monkey")[1]),
           inspected: 0,
         };
       });
@@ -34,7 +34,7 @@ export class Day11 implements IDay<number[]> {
     return calc(eval(op.replace(/old/g, value.toString())));
   }
 
-  solve(fileName: string) {
+  solve(input: string) {
     let helper = (
       monkeys: Monkey[],
       rounds: number,
@@ -57,10 +57,10 @@ export class Day11 implements IDay<number[]> {
         .reduce((a, b) => a * b.inspected, 1);
     };
 
-    let file = this.readFile(fileName);
+    let file = this.readFile(input);
     const step1 = helper(file, 20, (f) => Math.floor(f / 3));
 
-    file = this.readFile(fileName);
+    file = this.readFile(input);
     const mod = file.reduce((a, b) => a * b.test, 1);
     const step2 = helper(file, 10000, (f) => f % mod);
 
@@ -68,7 +68,7 @@ export class Day11 implements IDay<number[]> {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day11.input');
+    const [step1, step2] = this.solve(day11input);
 
     console.log(`day 11 step 1: ${step1}`);
     console.log(`day 11 step 2: ${step2}`);

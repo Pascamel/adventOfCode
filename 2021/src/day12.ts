@@ -1,5 +1,5 @@
-import { readFileSync } from 'fs';
-import { IDay } from './helpers';
+import { IDay } from "./helpers";
+import { day12input } from "./data";
 
 export class Day12 implements IDay {
   duplicates: Map<string, boolean>;
@@ -9,11 +9,11 @@ export class Day12 implements IDay {
   }
 
   isSmallCave(node: string) {
-    return node !== 'start' && node !== 'end' && node.match(/^[a-z]*$/);
+    return node !== "start" && node !== "end" && node.match(/^[a-z]*$/);
   }
 
   hasDuplicates(array: Array<string>) {
-    const key = array.sort().join('-');
+    const key = array.sort().join("-");
     if (this.duplicates.has(key)) {
       return this.duplicates.get(key);
     }
@@ -34,7 +34,7 @@ export class Day12 implements IDay {
   part1(map: Map<string, Array<string>>) {
     let completePaths = new Array<Array<string>>();
     let paths = new Array<Array<string>>();
-    let newPaths = (map.get('start') || []).map((node) => ['start', node]);
+    let newPaths = (map.get("start") || []).map((node) => ["start", node]);
     let tmp = 0;
 
     while (newPaths.length > 0 && tmp < 50) {
@@ -50,10 +50,10 @@ export class Day12 implements IDay {
           .filter(
             (node) => node !== secondToLastNode || this.isSmallCave(lastNode)
           )
-          .filter((node) => node !== 'start')
+          .filter((node) => node !== "start")
           .filter((node) => smallCaves.indexOf(node) === -1)
           .forEach((node) => {
-            if (node === 'end') {
+            if (node === "end") {
               completePaths.push([...path, node]);
             } else {
               newPaths.push([...path, node]);
@@ -61,20 +61,20 @@ export class Day12 implements IDay {
           });
       });
 
-      newPaths = [...new Set(newPaths.map((p) => p.join('-')))].map((p) =>
-        p.split('-')
+      newPaths = [...new Set(newPaths.map((p) => p.join("-")))].map((p) =>
+        p.split("-")
       );
     }
 
-    return [...new Set(completePaths.map((p) => p.join('-')))].map((p) =>
-      p.split('-')
+    return [...new Set(completePaths.map((p) => p.join("-")))].map((p) =>
+      p.split("-")
     ).length;
   }
 
   part2(map: Map<string, Array<string>>) {
     let completePaths = new Array<Array<string>>();
     let paths = new Array<Array<string>>();
-    let newPaths = (map.get('start') || []).map((node) => ['start', node]);
+    let newPaths = (map.get("start") || []).map((node) => ["start", node]);
     let tmp = 0;
 
     while (newPaths.length > 0 && tmp < 16) {
@@ -93,7 +93,7 @@ export class Day12 implements IDay {
               this.isSmallCave(lastNode) ||
               this.isSmallCave(secondToLastNode)
           )
-          .filter((node) => node !== 'start')
+          .filter((node) => node !== "start")
           .filter(
             (node) =>
               !this.isSmallCave(node) ||
@@ -101,7 +101,7 @@ export class Day12 implements IDay {
               !this.hasDuplicates(smallCaves)
           )
           .forEach((node) => {
-            if (node === 'end') {
+            if (node === "end") {
               completePaths.push([...path, node]);
             } else {
               newPaths.push([...path, node]);
@@ -109,22 +109,22 @@ export class Day12 implements IDay {
           });
       });
 
-      newPaths = [...new Set(newPaths.map((p) => p.join('-')))].map((p) =>
-        p.split('-')
+      newPaths = [...new Set(newPaths.map((p) => p.join("-")))].map((p) =>
+        p.split("-")
       );
-      completePaths = [...new Set(completePaths.map((p) => p.join('-')))].map(
-        (p) => p.split('-')
+      completePaths = [...new Set(completePaths.map((p) => p.join("-")))].map(
+        (p) => p.split("-")
       );
     }
 
-    return [...new Set(completePaths.map((p) => p.join('-')))].length;
+    return [...new Set(completePaths.map((p) => p.join("-")))].length;
   }
 
-  solve(fileName: string) {
-    const input = readFileSync(fileName, 'utf-8').split('\n');
+  solve(input: string) {
+    const lines = input.split("\n");
     const map = new Map();
-    input.forEach((path) => {
-      let node = path.split('-');
+    lines.forEach((path) => {
+      let node = path.split("-");
       map.set(node[0], [...(map.get(node[0]) || []), node[1]]);
       map.set(node[1], [...(map.get(node[1]) || []), node[0]]);
     });
@@ -136,9 +136,9 @@ export class Day12 implements IDay {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day12.sample1');
+    const [step1, step2] = this.solve(day12input);
 
-    console.log('day 12 step 1: ' + step1.toString());
-    console.log('day 12 step 2: ' + step2.toString());
+    console.log("day 12 step 1: " + step1.toString());
+    console.log("day 12 step 2: " + step2.toString());
   }
 }

@@ -1,5 +1,5 @@
-import { readFileSync } from 'fs';
-import { IDay } from './helpers';
+import { IDay } from "./helpers";
+import { day11input } from "./data";
 
 const SIZE = 10;
 
@@ -89,10 +89,10 @@ export class Day11 implements IDay {
     }
   }
 
-  solve(fileName: string) {
-    const input = readFileSync(fileName, 'utf-8').split('\n');
-    const input1 = input.map((line) => line.split('').map((n) => parseInt(n)));
-    const input2 = input.map((line) => line.split('').map((n) => parseInt(n)));
+  solve(input: string) {
+    const lines = input.split("\n");
+    const input1 = lines.map((line) => line.split("").map((n) => parseInt(n)));
+    const input2 = lines.map((line) => line.split("").map((n) => parseInt(n)));
 
     let result1 = this.part1(input1);
     let result2 = this.part2(input2);
@@ -101,9 +101,9 @@ export class Day11 implements IDay {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day11.input');
+    const [step1, step2] = this.solve(day11input);
 
-    console.log('day 11 step 1: ' + step1.toString());
-    console.log('day 11 step 2: ' + step2.toString());
+    console.log("day 11 step 1: " + step1.toString());
+    console.log("day 11 step 2: " + step2.toString());
   }
 }

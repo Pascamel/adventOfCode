@@ -1,15 +1,15 @@
-import { IDay } from './helpers';
-import { readFileSync } from 'fs';
+import { day05input } from "./data";
+import { IDay } from "./helpers";
 
 export class Day5 implements IDay<string[]> {
-  getStacksAndMoves(fileName: string) {
-    const file = readFileSync(fileName, 'utf-8').split('\n');
+  getStacksAndMoves(input: string) {
+    const file = input.split("\n");
 
     const moves = file
-      .splice(file.findIndex((s) => s.startsWith('move')))
+      .splice(file.findIndex((s) => s.startsWith("move")))
       .map((move) => {
-        const [scount, s] = move.replace('move ', '').split(' from ');
-        const [sfrom, sto] = s.split(' to ');
+        const [scount, s] = move.replace("move ", "").split(" from ");
+        const [sfrom, sto] = s.split(" to ");
         return [scount, sfrom, sto].map((v) => parseInt(v));
       });
 
@@ -23,7 +23,7 @@ export class Day5 implements IDay<string[]> {
               acc.push([]);
             }
             const v = s.substring(i * 4 + 1, i * 4 + 2);
-            if (v !== ' ') {
+            if (v !== " ") {
               acc[i].push(s.substr(i * 4 + 1, 1));
             }
             i++;
@@ -42,11 +42,11 @@ export class Day5 implements IDay<string[]> {
 
     for (const [count, from, to] of moves) {
       for (let i = 0; i < count; i++) {
-        stacks[to - 1].push(stacks[from - 1].pop() ?? '');
+        stacks[to - 1].push(stacks[from - 1].pop() ?? "");
       }
     }
 
-    return stacks.map((s) => s.pop()).join('');
+    return stacks.map((s) => s.pop()).join("");
   }
 
   solveStep2(fileName: string) {
@@ -61,7 +61,7 @@ export class Day5 implements IDay<string[]> {
       stacks[to - 1] = stacks[to - 1].concat(values);
     }
 
-    return stacks.map((s) => s.pop()).join('');
+    return stacks.map((s) => s.pop()).join("");
   }
 
   solve(fileName: string) {
@@ -72,7 +72,7 @@ export class Day5 implements IDay<string[]> {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day5.input');
+    const [step1, step2] = this.solve(day05input);
 
     console.log(`day 5 step 1: ${step1}`);
     console.log(`day 5 step 2: ${step2}`);

@@ -1,5 +1,5 @@
-import { readFileSync } from 'fs';
-import { IDay } from './helpers';
+import { IDay } from "./helpers";
+import { day07input } from "./data";
 
 export class Day7 implements IDay {
   cost2: Array<number>;
@@ -30,10 +30,8 @@ export class Day7 implements IDay {
     return arr.reduce((acc, v) => acc + this.cost2[Math.abs(v - target)], 0);
   }
 
-  solve(fileName: string) {
-    const nums = readFileSync(fileName, 'utf-8')
-      .split(',')
-      .map((num) => parseInt(num));
+  solve(input: string) {
+    const nums = input.split(",").map((num) => parseInt(num));
 
     const result1 = this.gasToTarget1(nums, this.median(nums));
     const result2 = this.gasToTarget2(nums, this.average(nums));
@@ -42,9 +40,9 @@ export class Day7 implements IDay {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day7.input');
+    const [step1, step2] = this.solve(day07input);
 
-    console.log('day 7 step 1: ' + step1.toString());
-    console.log('day 7 step 2: ' + step2.toString());
+    console.log("day 7 step 1: " + step1.toString());
+    console.log("day 7 step 2: " + step2.toString());
   }
 }

@@ -1,9 +1,9 @@
-import { readFileSync } from 'fs';
-import { IDay } from './helpers';
+import { day02input } from "./data";
+import { IDay } from "./helpers";
 
 export class Day2 implements IDay {
-  solve(fileName: string) {
-    const lines = readFileSync(fileName, 'utf-8').split('\n');
+  solve(input: string) {
+    const lines = input.split("\n");
 
     let horizontal = 0;
     let depth1 = 0;
@@ -11,18 +11,18 @@ export class Day2 implements IDay {
     let aim = 0;
 
     for (const line of lines) {
-      const [order, count] = line.split(' ');
+      const [order, count] = line.split(" ");
 
       switch (order) {
-        case 'forward':
+        case "forward":
           horizontal += +count;
           depth2 += aim * +count;
           break;
-        case 'up':
+        case "up":
           depth1 -= +count;
           aim -= +count;
           break;
-        case 'down':
+        case "down":
           depth1 += +count;
           aim += +count;
           break;
@@ -33,9 +33,9 @@ export class Day2 implements IDay {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day2.input');
+    const [step1, step2] = this.solve(day02input);
 
-    console.log('day 2 step 1: ' + step1.toString());
-    console.log('day 2 step 2: ' + step2.toString());
+    console.log("day 2 step 1: " + step1.toString());
+    console.log("day 2 step 2: " + step2.toString());
   }
 }

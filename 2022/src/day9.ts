@@ -1,12 +1,12 @@
-import { IDay } from './helpers';
-import { readFileSync } from 'fs';
+import { day09input } from "./data";
+import { IDay } from "./helpers";
 
 export class Day9 implements IDay<number[]> {
   directions(direction: string) {
-    if (direction === 'R') return [1, 0];
-    if (direction === 'L') return [-1, 0];
-    if (direction === 'U') return [0, -1];
-    if (direction === 'D') return [0, 1];
+    if (direction === "R") return [1, 0];
+    if (direction === "L") return [-1, 0];
+    if (direction === "U") return [0, -1];
+    if (direction === "D") return [0, 1];
     return [0, 0];
   }
 
@@ -40,7 +40,7 @@ export class Day9 implements IDay<number[]> {
             }
           }
 
-          seen.add(rope.slice(-1).join(','));
+          seen.add(rope.slice(-1).join(","));
         }
       }
     }
@@ -48,16 +48,14 @@ export class Day9 implements IDay<number[]> {
     return seen.size;
   }
 
-  solve(fileName: string) {
-    const file = readFileSync(fileName, 'utf-8')
-      .split('\n')
-      .map((line) => {
-        const parts = line.split(' ');
-        return {
-          direction: parts[0],
-          times: parseInt(parts[1]),
-        };
-      });
+  solve(input: string) {
+    const file = input.split("\n").map((line) => {
+      const parts = line.split(" ");
+      return {
+        direction: parts[0],
+        times: parseInt(parts[1]),
+      };
+    });
 
     const step1 = this.helper(file, 2);
     const step2 = this.helper(file, 10);
@@ -66,7 +64,7 @@ export class Day9 implements IDay<number[]> {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day9.input');
+    const [step1, step2] = this.solve(day09input);
 
     console.log(`day 9 step 1: ${step1}`);
     console.log(`day 9 step 2: ${step2}`);

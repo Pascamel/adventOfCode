@@ -1,12 +1,12 @@
-import { IDay } from './helpers';
-import { readFileSync } from 'fs';
+import { day04input } from "./data";
+import { IDay } from "./helpers";
 
 export class Day4 implements IDay<number[]> {
-  solve(fileName: string) {
-    const file = readFileSync(fileName, 'utf-8')
-      .split('\n')
+  solve(input: string) {
+    const file = input
+      .split("\n")
       .map((v) =>
-        v.split(',').map((v) => v.split('-').map((v) => parseInt(v)))
+        v.split(",").map((v) => v.split("-").map((v) => parseInt(v)))
       );
 
     const contained = (v: number[][]) => {
@@ -34,7 +34,7 @@ export class Day4 implements IDay<number[]> {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day4.input');
+    const [step1, step2] = this.solve(day04input);
 
     console.log(`day 4 step 1: ${step1}`);
     console.log(`day 4 step 2: ${step2}`);

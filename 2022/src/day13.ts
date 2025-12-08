@@ -1,5 +1,5 @@
-import { IDay } from './helpers';
-import { readFileSync } from 'fs';
+import { IDay } from "./helpers";
+import { day13input } from "./data";
 
 type ArrayNumber = Array<number | ArrayNumber>;
 type Pair = {
@@ -9,7 +9,7 @@ type Pair = {
 
 export class Day13 implements IDay<number[]> {
   rightOrder(left: ArrayNumber, right: ArrayNumber): boolean | undefined {
-    if (typeof left === 'number' && typeof right === 'number') {
+    if (typeof left === "number" && typeof right === "number") {
       return left > right ? false : left < right ? true : undefined;
     } else if (Array.isArray(left) !== Array.isArray(right)) {
       return this.rightOrder(
@@ -30,14 +30,14 @@ export class Day13 implements IDay<number[]> {
     return undefined;
   }
 
-  solve(fileName: string) {
-    const file: Pair[] = readFileSync(fileName, 'utf-8')
-      .split('\n')
-      .join('|')
-      .split('||')
+  solve(input: string) {
+    const file: Pair[] = input
+      .split("\n")
+      .join("|")
+      .split("||")
       .map((v) => ({
-        left: JSON.parse(v.split('|')[0]),
-        right: JSON.parse(v.split('|')[1]),
+        left: JSON.parse(v.split("|")[0]),
+        right: JSON.parse(v.split("|")[1]),
       }));
 
     const step1 = file
@@ -65,7 +65,7 @@ export class Day13 implements IDay<number[]> {
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day13.input');
+    const [step1, step2] = this.solve(day13input);
 
     console.log(`day 13 step 1: ${step1}`);
     console.log(`day 13 step 2: ${step2}`);

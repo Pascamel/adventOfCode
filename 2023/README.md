@@ -1,23 +1,11 @@
 # Development mode
 
 ```
-yarn run dev
-```
-
-# build the code for production
-
-```
-yarn build
-```
-
-# Execute code
-
-```
-yarn start
+npm run dev
 ```
 
 # tests
 
 ```
-yarn test
+npm run test
 ```

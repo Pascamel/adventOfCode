@@ -1,5 +1,6 @@
-import { IDay } from './helpers';
-import { readFileSync } from 'fs';
+import { day12input } from "./data";
+import { IDay } from "./helpers";
+import { readFileSync } from "fs";
 
 interface Mark {
   value: number;
@@ -13,10 +14,10 @@ interface Point {
 
 export class Day12 implements IDay<number[]> {
   directions(direction: string): Point {
-    if (direction === 'right') return { row: 0, col: 1 };
-    if (direction === 'left') return { row: 0, col: -1 };
-    if (direction === 'up') return { row: -1, col: 0 };
-    if (direction === 'down') return { row: 1, col: 0 };
+    if (direction === "right") return { row: 0, col: 1 };
+    if (direction === "left") return { row: 0, col: -1 };
+    if (direction === "up") return { row: -1, col: 0 };
+    if (direction === "down") return { row: 1, col: 0 };
     return { row: 0, col: 0 };
   }
 
@@ -48,7 +49,7 @@ export class Day12 implements IDay<number[]> {
 
       for (const path of candidates) {
         const last = path.slice(-1)[0];
-        for (let d of ['left', 'right', 'up', 'down']) {
+        for (let d of ["left", "right", "up", "down"]) {
           const dir = this.directions(d);
           const [row, col] = [last.row + dir.row, last.col + dir.col];
 
@@ -73,7 +74,7 @@ export class Day12 implements IDay<number[]> {
                 newCandidates.push([...path, { row, col }]);
               }
 
-              if (file[row][col].mark === 'E') {
+              if (file[row][col].mark === "E") {
                 found = true;
               }
             }
@@ -87,24 +88,22 @@ export class Day12 implements IDay<number[]> {
     return round;
   }
 
-  solve(fileName: string) {
-    const file: Mark[][] = readFileSync(fileName, 'utf-8')
-      .split('\n')
-      .map((line) =>
-        line.split('').map((mark: string) => ({
-          value: (mark === 'S' ? 'a' : mark === 'E' ? 'z' : mark).charCodeAt(0),
-          mark,
-        }))
-      );
+  solve(input: string) {
+    const file: Mark[][] = input.split("\n").map((line) =>
+      line.split("").map((mark: string) => ({
+        value: (mark === "S" ? "a" : mark === "E" ? "z" : mark).charCodeAt(0),
+        mark,
+      }))
+    );
 
-    const step1 = this.helper(file, this.candidates(file, ['S']));
-    const step2 = this.helper(file, this.candidates(file, ['S', 'a']));
+    const step1 = this.helper(file, this.candidates(file, ["S"]));
+    const step2 = this.helper(file, this.candidates(file, ["S", "a"]));
 
     return [step1, step2];
   }
 
   run() {
-    const [step1, step2] = this.solve('data/day12.input');
+    const [step1, step2] = this.solve(day12input);
 
     console.log(`day 12 step 1: ${step1}`);
     console.log(`day 12 step 2: ${step2}`);
