@@ -1,4 +1,4 @@
-import { day07input, day07sample } from "./data";
+import { day07input } from "./data";
 import { IDay } from "./helpers";
 
 export class Day07 implements IDay<number[]> {
