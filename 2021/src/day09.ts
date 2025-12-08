@@ -1,7 +1,7 @@
 import { IDay } from "./helpers";
 import { day09input } from "./data";
 
-export class Day9 implements IDay {
+export class Day09 implements IDay {
   lowPoints(input: Array<Array<number>>) {
     let result = [];
 
@@ -77,7 +77,7 @@ export class Day9 implements IDay {
   run() {
     const [step1, step2] = this.solve(day09input);
 
-    console.log("day 9 step 1: " + step1.toString());
-    console.log("day 9 step 2: " + step2.toString());
+    console.log("day 09 step 1: " + step1.toString());
+    console.log("day 09 step 2: " + step2.toString());
   }
 }

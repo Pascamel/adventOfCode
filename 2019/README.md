@@ -1,1 +1,11 @@
-# advent2019
+# Development mode
+
+```
+npm run dev
+```
+
+# tests
+
+```
+npm run test
+```

@@ -1,7 +1,7 @@
 import { day02input } from "./data";
 import { IDay } from "./helpers";
 
-export class Day2 implements IDay {
+export class Day02 implements IDay {
   solve(input: string) {
     const lines = input.split("\n");
 
@@ -35,7 +35,7 @@ export class Day2 implements IDay {
   run() {
     const [step1, step2] = this.solve(day02input);
 
-    console.log("day 2 step 1: " + step1.toString());
-    console.log("day 2 step 2: " + step2.toString());
+    console.log("day 02 step 1: " + step1.toString());
+    console.log("day 02 step 2: " + step2.toString());
   }
 }

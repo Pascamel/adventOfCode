@@ -1,7 +1,7 @@
 import { IDay } from "./helpers";
 import { day08input } from "./data";
 
-export class Day8 implements IDay {
+export class Day08 implements IDay {
   part1(input: Array<string>) {
     return input.reduce((acc, line) => {
       const result = line
@@ -87,7 +87,7 @@ export class Day8 implements IDay {
   run() {
     const [step1, step2] = this.solve(day08input);
 
-    console.log("day 8 step 1: " + step1.toString());
-    console.log("day 8 step 2: " + step2.toString());
+    console.log("day 08 step 1: " + step1.toString());
+    console.log("day 08 step 2: " + step2.toString());
   }
 }

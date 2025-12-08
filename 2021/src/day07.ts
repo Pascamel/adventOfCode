@@ -1,7 +1,7 @@
 import { IDay } from "./helpers";
 import { day07input } from "./data";
 
-export class Day7 implements IDay {
+export class Day07 implements IDay {
   cost2: Array<number>;
 
   constructor() {
@@ -42,7 +42,7 @@ export class Day7 implements IDay {
   run() {
     const [step1, step2] = this.solve(day07input);
 
-    console.log("day 7 step 1: " + step1.toString());
-    console.log("day 7 step 2: " + step2.toString());
+    console.log("day 07 step 1: " + step1.toString());
+    console.log("day 07 step 2: " + step2.toString());
   }
 }

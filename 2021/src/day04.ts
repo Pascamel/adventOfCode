@@ -2,7 +2,7 @@ import { readFileSync } from "fs";
 import { IDay } from "./helpers";
 import { day04input } from "./data";
 
-export class Day4 implements IDay {
+export class Day04 implements IDay {
   lineWins = (v1: number, v2: number, v3: number, v4: number, v5: number) =>
     v1 === -1 && v2 === -1 && v3 === -1 && v4 === -1 && v5 === -1;
 
@@ -93,7 +93,7 @@ export class Day4 implements IDay {
   run() {
     const [step1, step2] = this.solve(day04input);
 
-    console.log("day 4 step 1: " + step1.toString());
-    console.log("day 4 step 2: " + step2.toString());
+    console.log("day 04 step 1: " + step1.toString());
+    console.log("day 04 step 2: " + step2.toString());
   }
 }

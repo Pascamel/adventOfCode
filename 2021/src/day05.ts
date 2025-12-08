@@ -12,7 +12,7 @@ type Line = {
   end: Point;
 };
 
-export class Day5 implements IDay {
+export class Day05 implements IDay {
   part1 = (input: Array<Line>) => {
     const map1 = new Map();
     input
@@ -93,7 +93,7 @@ export class Day5 implements IDay {
   run() {
     const [step1, step2] = this.solve(day05input);
 
-    console.log("day 5 step 1: " + step1.toString());
-    console.log("day 5 step 2: " + step2.toString());
+    console.log("day 05 step 1: " + step1.toString());
+    console.log("day 05 step 2: " + step2.toString());
   }
 }

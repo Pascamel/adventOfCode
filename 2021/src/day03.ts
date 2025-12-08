@@ -1,7 +1,7 @@
 import { IDay } from "./helpers";
 import { day03input } from "./data";
 
-export class Day3 implements IDay {
+export class Day03 implements IDay {
   binToNumber = (binary: string) => {
     return binary
       .split("")
@@ -79,7 +79,7 @@ export class Day3 implements IDay {
   run() {
     const [step1, step2] = this.solve(day03input);
 
-    console.log("day 3 step 1: " + step1.toString());
-    console.log("day 3 step 2: " + step2.toString());
+    console.log("day 03 step 1: " + step1.toString());
+    console.log("day 03 step 2: " + step2.toString());
   }
 }
