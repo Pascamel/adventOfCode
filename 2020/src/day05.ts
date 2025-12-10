@@ -54,7 +54,7 @@ export class Day05 implements IDay {
   run() {
     const [step1, step2] = this.solve(day05input);
 
-    console.log(`day 05 step 1: ${step1}`);
-    console.log(`day 05 step 2: ${step2}`);
+    console.log(`Day 05 step 1: ${step1}`);
+    console.log(`Day 05 step 2: ${step2}`);
   }
 }

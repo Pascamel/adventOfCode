@@ -53,9 +53,6 @@ export class Day03 implements IDay {
 
     const part1 = distances[0];
 
-    // -----------------------------------
-    // Part 2: step counts (index lookup)
-    // -----------------------------------
     const steps = intersect
       .map(
         ([x, y]) =>
@@ -70,9 +67,9 @@ export class Day03 implements IDay {
   }
 
   run() {
-    const [p1, p2] = this.solve(day03input);
+    const [step1, step2] = this.solve(day03input);
 
-    console.log("day 03 step 1: " + p1.toString());
-    console.log("day 03 step 2: " + p2.toString());
+    console.log(`Day 03 step 1: ${step1}`);
+    console.log(`Day 03 step 2: ${step2}`);
   }
 }

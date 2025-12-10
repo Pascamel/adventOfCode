@@ -50,10 +50,7 @@ export class Day03 implements IDay {
   run() {
     const [step1, step2] = this.solve(day03input);
 
-    console.log(`day 03 step 1: ${step1}`);
-    console.log(`day 03 step 2: ${step2}`);
+    console.log(`Day 03 step 1: ${step1}`);
+    console.log(`Day 03 step 2: ${step2}`);
   }
 }
-
-// Example usage:
-// console.log(Day3.solve("sample.txt", "input.txt"));

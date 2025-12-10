@@ -11,14 +11,12 @@ export class Day02 implements IDay {
       if (opcode === 99) {
         return listInts[0];
       } else if (opcode === 1) {
-        // add
         const a = listInts[listInts[pos + 1]];
         const b = listInts[listInts[pos + 2]];
         const dest = listInts[pos + 3];
         listInts[dest] = a + b;
         pos += 4;
       } else if (opcode === 2) {
-        // multiply
         const a = listInts[listInts[pos + 1]];
         const b = listInts[listInts[pos + 2]];
         const dest = listInts[pos + 3];
@@ -38,20 +36,12 @@ export class Day02 implements IDay {
       .split(",")
       .map((x) => parseInt(x, 10));
 
-    // -------------------------
-    // PART 1
-    // -------------------------
     const list1 = [...listInput];
     list1[1] = 12;
     list1[2] = 2;
-
     const part1 = this.helper(list1);
 
-    // -------------------------
-    // PART 2
-    // -------------------------
     let part2 = -1;
-
     for (let noun = 0; noun < 80; noun++) {
       for (let verb = 0; verb < 80; verb++) {
         const list2 = [...listInput];
@@ -70,9 +60,9 @@ export class Day02 implements IDay {
   }
 
   run() {
-    const [finale1, finale2] = this.solve(day02input);
+    const [step1, step2] = this.solve(day02input);
 
-    console.log("day 02 step 1: " + finale1.toString());
-    console.log("day 02 step 2: " + finale2.toString());
+    console.log(`Day 02 step 1: ${step1}`);
+    console.log(`Day 02 step 2: ${step2}`);
   }
 }

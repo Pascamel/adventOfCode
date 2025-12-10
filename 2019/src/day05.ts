@@ -2,18 +2,10 @@ import { IDay } from "./helpers";
 import { day05input } from "./data";
 
 export class Day05 implements IDay {
-  // -------------------------------------------------
-  // Decode parameters based on parameter mode settings
-  // -------------------------------------------------
-  private getParameterModes(
-    memory: number[],
-    command: number,
-    pos: number
-  ): number[] {
+  getParameterModes(memory: number[], command: number, pos: number): number[] {
     // pad to 5 chars, extract ABCDE pattern
     const modes = ("00000" + String(command)).slice(-5).split("").map(Number);
 
-    // modes[2] = mode of param1, modes[1] = mode of param2, modes[0] = mode of param3
     return [
       modes[2] === 0 ? memory[pos + 1] : pos + 1,
       modes[1] === 0 ? memory[pos + 2] : pos + 2,
@@ -21,10 +13,7 @@ export class Day05 implements IDay {
     ];
   }
 
-  // -------------------------------------------------
-  // Intcode interpreter
-  // -------------------------------------------------
-  private runProgram(memory: number[], inputValue: number): number {
+  runProgram(memory: number[], inputValue: number): number {
     let pos = 0;
     let outputs: number[] = [];
 
@@ -32,47 +21,30 @@ export class Day05 implements IDay {
       const opcode = memory[pos] % 10;
       const [p1, p2, p3] = this.getParameterModes(memory, memory[pos], pos);
 
-      switch (opcode) {
-        case 1: // add
-          memory[p3] = memory[p1] + memory[p2];
-          pos += 4;
-          break;
-
-        case 2: // multiply
-          memory[p3] = memory[p1] * memory[p2];
-          pos += 4;
-          break;
-
-        case 3: // input
-          memory[p1] = inputValue;
-          pos += 2;
-          break;
-
-        case 4: // output
-          outputs.push(memory[p1]);
-          pos += 2;
-          break;
-
-        case 5: // jump-if-true
-          pos = memory[p1] !== 0 ? memory[p2] : pos + 3;
-          break;
-
-        case 6: // jump-if-false
-          pos = memory[p1] === 0 ? memory[p2] : pos + 3;
-          break;
-
-        case 7: // less-than
-          memory[p3] = memory[p1] < memory[p2] ? 1 : 0;
-          pos += 4;
-          break;
-
-        case 8: // equals
-          memory[p3] = memory[p1] === memory[p2] ? 1 : 0;
-          pos += 4;
-          break;
-
-        default:
-          throw new Error("Unknown opcode: " + opcode);
+      if (opcode === 1) {
+        memory[p3] = memory[p1] + memory[p2];
+        pos += 4;
+      } else if (opcode === 2) {
+        memory[p3] = memory[p1] * memory[p2];
+        pos += 4;
+      } else if (opcode === 3) {
+        memory[p1] = inputValue;
+        pos += 2;
+      } else if (opcode === 4) {
+        outputs.push(memory[p1]);
+        pos += 2;
+      } else if (opcode === 5) {
+        pos = memory[p1] !== 0 ? memory[p2] : pos + 3;
+      } else if (opcode === 6) {
+        pos = memory[p1] === 0 ? memory[p2] : pos + 3;
+      } else if (opcode === 7) {
+        memory[p3] = memory[p1] < memory[p2] ? 1 : 0;
+        pos += 4;
+      } else if (opcode === 8) {
+        memory[p3] = memory[p1] === memory[p2] ? 1 : 0;
+        pos += 4;
+      } else {
+        throw new Error("Unknown opcode: " + opcode);
       }
     }
 
@@ -92,9 +64,9 @@ export class Day05 implements IDay {
   }
 
   run(): void {
-    const [s1, s2] = this.solve("./day5.input");
+    const [step1, step2] = this.solve(day05input);
 
-    console.log("day 05 step 1: " + s1.toString());
-    console.log("day 05 step 2: " + s2.toString());
+    console.log(`Day 05 step 1: ${step1}`);
+    console.log(`Day 05 step 2: ${step2}`);
   }
 }
