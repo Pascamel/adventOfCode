@@ -1,5 +1,5 @@
 {
-  "name": "advent2022",
+  "name": "2022",
   "version": "1.0.0",
   "description": "Advent of code 2022",
   "main": "dist/index.js",

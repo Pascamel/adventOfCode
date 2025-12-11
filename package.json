@@ -1,0 +1,18 @@
+{
+  "name": "adventofcode",
+  "private": true,
+  "workspaces": [
+    "2015",    
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025"
+  ],
+  "scripts": {
+    "dev2025": "npm run dev -w 2025",
+    "test2025": "npm run test -w 2025"
+  }
+}

@@ -1,7 +1,7 @@
 {
-  "name": "advent2024",
+  "name": "2019",
   "version": "1.0.0",
-  "description": "Advent of code 2024",
+  "description": "Advent of code 2019",
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {

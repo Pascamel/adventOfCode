@@ -1,8 +1,8 @@
 {
   "name": "2021",
   "version": "0.0.0",
-  "main": "dist/index.js",
-  "author": "Pascamel",
+  "description": "Advent of code 2021",
+  "main": "dist/index.js",  
   "license": "MIT",
   "scripts": {
     "dev": "NODE_ENV=development nodemon",
