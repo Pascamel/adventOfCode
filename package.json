@@ -13,6 +13,10 @@
   ],
   "scripts": {
     "dev2025": "npm run dev -w 2025",
-    "test2025": "npm run test -w 2025"
+    "test2025": "npm run test -w 2025",
+    "dev2024": "npm run dev -w 2024",
+    "test2024": "npm run test -w 2024",
+    "dev2023": "npm run dev -w 2023",
+    "test2023": "npm run test -w 2023"
   }
 }
