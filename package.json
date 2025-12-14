@@ -17,6 +17,14 @@
     "dev2024": "npm run dev -w 2024",
     "test2024": "npm run test -w 2024",
     "dev2023": "npm run dev -w 2023",
-    "test2023": "npm run test -w 2023"
+    "test2023": "npm run test -w 2023",
+    "dev2022": "npm run dev -w 2022",
+    "test2022": "npm run test -w 2022",
+    "dev2021": "npm run dev -w 2021",
+    "test2021": "npm run test -w 2021",
+    "dev2020": "npm run dev -w 2020",
+    "test2020": "npm run test -w 2020",
+    "dev2019": "npm run dev -w 2019",
+    "test2019": "npm run test -w 2019"
   }
 }
